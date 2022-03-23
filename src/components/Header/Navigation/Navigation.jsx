@@ -1,0 +1,13 @@
+import { Component } from "react";
+
+export default class Navigation extends Component {
+    render () {
+        return (
+            <>
+                <div>Category name</div>
+                <div>Category name</div>
+                <div>Category name</div>
+            </>
+        )
+    }
+}
