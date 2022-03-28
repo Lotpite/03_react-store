@@ -6,7 +6,7 @@ export default class Navigation extends Component {
         let categoriesList = this.props.state.categoriesList.map(category => { 
             let NewItem = category.active ? activeNavITem : NavItem  //change active class
             return (
-                <NewItem key={category.id} onClick={() => this.props.onToggleActive(category.id)}>
+                <NewItem key={category.id} onClick={() => this.props.onCategoryChange(category.id)}>
                     {category.name}
                 </NewItem>
             )

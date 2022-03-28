@@ -5,10 +5,12 @@ import Logo from "./Logo/Logo";
 import Navigation from "./Navigation/Navigation";
 
 class Header extends Component {
+
     render () {
+
         return (
             <StyledHeader>
-                <Navigation state={this.props.categoriesList} onToggleActive={this.props.onToggleActive} />
+                <Navigation state={this.props.categoriesList} onToggleActive={this.props.onToggleActive} onCategoryChange={this.props.onCategoryChange}/>
                 <Logo />
                 <Actions />
             </StyledHeader>

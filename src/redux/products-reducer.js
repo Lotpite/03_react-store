@@ -1,34 +1,14 @@
-const CHANGE_ACTIVE = 'CHANGE_ACTIVE',
-    SET_CATEGORiES = 'SET_CATEGORiES';
+const SET_CATEGORIES = 'SET_CATEGORiES',
+    SET_PRODUCTS = 'SET_PRODUCTS';
 
 let initialState = {
-    categoriesList: [
-            {id: 0, name: 'All', active: false},
-            {id: 1, name: 'Tech', active: true},
-            {id: 2, name: 'Clothes', active: false}
-        ],
-    products: []
+    categoriesList: [],
+    productsList: []
 }
 
 const ProductsReducer = (state = initialState, action) => {
-    console.log(action.userId)
     switch(action.type) {
-        case CHANGE_ACTIVE: {
-            return {
-                ...state,
-                categoriesList: state.categoriesList.map(category => {
-                    if(action.userId === category.id) {
-                        return {...category, active: true}
-                    }
-                    if(action.userId !== category.id) {
-                        return {...category, active: false}
-                    }
-
-                    return category;
-                })
-            }
-        }
-        case SET_CATEGORiES: {
+        case SET_CATEGORIES: {
             return {
                 ...state, 
                 categoriesList: action.categories.map(category => {
@@ -40,19 +20,28 @@ const ProductsReducer = (state = initialState, action) => {
                 )
             }
         }
+        case SET_PRODUCTS: {
+            return {
+                ...state,
+                categoriesList: state.categoriesList.map(category => {
+                    if(action.categoryId === category.id) {
+                        return {...category, active: true}
+                    }
+                    if(action.categoryId !== category.id) {
+                        return {...category, active: false}
+                    }
+                    return category;
+                }),
+                productsList: action.products
+            }
+        }
         default: {
             return state;
         }
     }
 }
 
-export const toggleActiveCreator = (userId) => {
-    return {
-        type: CHANGE_ACTIVE,
-        userId  
-    }
-} 
-
-export const setCategoriesCreator = (categories) => ({type: SET_CATEGORiES, categories})
+export const setCategoriesCreator = (categories) => ({type: SET_CATEGORIES, categories})
+export const setProductsCreator = (categoryId, products) => ({type: SET_PRODUCTS, categoryId, products});
 
 export default ProductsReducer;
