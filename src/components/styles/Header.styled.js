@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 export const StyledHeader = styled.header `
-position: absolute;
-width: 1440px;
-height: 80px;
-left: 0px;
-top: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 25px;
+    width: 1440px;
+    height: 80px;
 `

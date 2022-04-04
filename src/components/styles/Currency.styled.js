@@ -1,7 +1,14 @@
 import styled from "styled-components";
 
+
+export const CurrencyWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
 export const CurrencyMenu = styled.div`
     display: flex;
+    flex-direction: row;
     align-items: center;
 
     img {
@@ -15,4 +22,22 @@ export const CurrencyMenu = styled.div`
     }
 
 
+`
+
+export const DropdownMenu = styled.div`
+    display: ${(props) => console.log(props)};
+    flex-direction: column;
+    justify-content: space-around;
+
+    ul {
+        list-style: none;
+
+        li {
+            margin-top:10px;
+        }
+    }
+
+    :hover {
+        cursor: pointer;
+    }
 `

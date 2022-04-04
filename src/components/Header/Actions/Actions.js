@@ -1,14 +1,14 @@
 import { Component } from "react";
 import { StyledActions } from "../../styles/Actions.styled";
 import CartOverlay from "../../Cart/CartOverlay";
-import Currency from "./Currency";
+import CurrencyContainer from "./Currency/CurrencyContainer";
 
 export default class Actions extends Component {
     render () {
         return (
             <StyledActions>
                 <span>
-                    <Currency />
+                    <CurrencyContainer />
                 </span>
                 <span>
                     <CartOverlay />

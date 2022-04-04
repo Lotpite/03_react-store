@@ -65,6 +65,15 @@ class ProductService extends Component {
         }
     `
 
+    getCurrenciesListQuery = gql`
+        query getCurrenciesList {
+            currencies {
+                label,
+                symbol
+            }
+        }
+    `
+
     getResource = async (queryName, variables) => {
         let result = await this.client.query({
             query: queryName,
@@ -81,6 +90,11 @@ class ProductService extends Component {
     getProductsByCategoryName = async (name) => {
         const res = await this.getResource(this.getProductsByCategoryNameQuery, {title: name})
         return res.data.category.products;
+    }
+
+    getCurrenciesList = async () => {
+        const res = await this.getResource(this.getCategoriesListQuery)
+        return res.data.currencies;
     }
 
 }
