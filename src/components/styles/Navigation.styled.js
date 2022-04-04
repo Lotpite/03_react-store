@@ -15,6 +15,7 @@ bottom: 0px;
 
 export const NavItem = styled.div `
     margin-right: 32px;
+    text-transform: uppercase;
     :hover {
         cursor: pointer;
     }
@@ -22,5 +23,6 @@ export const NavItem = styled.div `
 
 export const activeNavITem = styled(NavItem)`
     font-weight: 700;
-    color: black;
+    color: #1DCF65;
+    text-decoration: underline;
 `

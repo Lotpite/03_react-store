@@ -1,15 +1,24 @@
-import './App.css';
 import { Component } from 'react';
+import { createGlobalStyle } from 'styled-components';
 import Header from './components/Header/Header';
-import Category from './components/Category/Category';
+import ProductsListPageContainer from './components/ProductCard/ProductsListPageContainer';
 
 class App extends Component {
 
   render () {
+    // default Styles Reset
+    const GlobalStyle = createGlobalStyle`
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+    `
     return (
       <div className="App">
-        {/* <Header /> */}
-        <Category />
+        <GlobalStyle/>
+        <Header />
+        <ProductsListPageContainer />
       </div>
     )
   }
