@@ -8,16 +8,25 @@ class ProductsListPage extends Component {
         if (!this.props.products.productsList) {
             return <Spinner/>
         }
+
         let productsList = this.props.products.productsList.map(product => {
+            let details = product.prices.map(price => {
+                if(price.currency.label === this.props.products.currentCurrency.label) {
+                    return (
+                        <p key={price.currency.label}>{price.currency.label} {price.amount}</p>
+                    )
+                }
+            })
             return (
                 <CardItem key={product.id}>
                     <img src={product.gallery[0]} alt="" />
                     <h3>{product.name}</h3>
-                    <p>{product.prices[0].currency.label} {product.prices[0].amount} </p>
+                        {details}
                     <button>Go to cart</button>
                 </CardItem>
             )
         })
+
 
         return (
             <CardContainer>

@@ -19,13 +19,15 @@ export const CurrencyMenu = styled.div`
 
     :hover {
         cursor: pointer;
+        color: #1DCF65;
     }
 
 
 `
 
 export const DropdownMenu = styled.div`
-    display: ${(props) => console.log(props)};
+    display: ${(props) => props.active ? "active" : "none"};
+    z-index: ${(props) => props.active ? "1" : "0"};
     flex-direction: column;
     justify-content: space-around;
 
@@ -34,10 +36,13 @@ export const DropdownMenu = styled.div`
 
         li {
             margin-top:10px;
-        }
-    }
+            width: 100%;
+            text-align: left;
 
-    :hover {
-        cursor: pointer;
+            :hover {
+                cursor: pointer;
+                color: #1DCF65;
+            }
+        }
     }
 `

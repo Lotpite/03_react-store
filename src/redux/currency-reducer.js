@@ -1,10 +1,11 @@
 const SET_CURRENCY = 'SET_CURRENCY',
-    CHANGE_ACTIVE_CURRENCY = 'CHANGE_ACTIVE_CURRENCY';
+    CHANGE_ACTIVE_CURRENCY = 'CHANGE_ACTIVE_CURRENCY',
+    TOGGLE_DROPDOWN_ACTIVE = 'TOGGLE_DROPDOWN_ACTIVE';
 
 let initialState = {
     currenciesList: null,
     activeCurrency: null,
-    isActiveDropdownMenu: false
+    activeDropdownMenu: false
 }
 
 const CurrencyReducer = (state = initialState, action) => {
@@ -18,8 +19,15 @@ const CurrencyReducer = (state = initialState, action) => {
         case CHANGE_ACTIVE_CURRENCY: {
             return {
                 ...state,
-                activeCurrency: action.currency
+                activeCurrency: {...action.currency}
             }
+        }
+
+        case TOGGLE_DROPDOWN_ACTIVE: {
+                return {
+                    ...state,
+                    activeDropdownMenu: action.isActive ? false : true
+                }
         }
 
         default: {
@@ -39,6 +47,13 @@ export const changeActiveCurrency = (currency) => {
     return ({
         type: CHANGE_ACTIVE_CURRENCY,
         currency
+    })
+}
+
+export const toggleDropdownActive = (isActive) => {
+    return ({
+        type: TOGGLE_DROPDOWN_ACTIVE,
+        isActive
     })
 }
 

@@ -93,7 +93,7 @@ class ProductService extends Component {
     }
 
     getCurrenciesList = async () => {
-        const res = await this.getResource(this.getCategoriesListQuery)
+        const res = await this.getResource(this.getCurrenciesListQuery)
         return res.data.currencies;
     }
 
