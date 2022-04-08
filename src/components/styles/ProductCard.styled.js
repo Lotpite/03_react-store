@@ -24,6 +24,7 @@ export const CardItem = styled.div `
     }
 
     h3 {
+        margin-top: 15px;
         font-family: 'Raleway';
         font-style: normal;
         font-weight: 300;
@@ -40,4 +41,9 @@ export const CardItem = styled.div `
         text-align: left;
         color: #1D1F22;
     }
+    :hover {
+	transform: translateY(-0.5rem) scale(1.0125);
+	box-shadow: 0 0.5em 3rem -1rem rgba(0,0,0,0.5);
+}
+
 `

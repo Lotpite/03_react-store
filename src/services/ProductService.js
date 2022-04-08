@@ -40,6 +40,7 @@ class ProductService extends Component {
     getProductByIdQuery = gql`
         query getProductById($id: String!){
             product (id: $id) {
+                id,
                 name,
                 gallery,
                 description,
@@ -95,6 +96,11 @@ class ProductService extends Component {
     getCurrenciesList = async () => {
         const res = await this.getResource(this.getCurrenciesListQuery)
         return res.data.currencies;
+    }
+
+    getProductById = async (productId) => {
+        const res = await this.getResource(this.getProductByIdQuery, {id: productId})
+        return res.data.product;
     }
 
 }

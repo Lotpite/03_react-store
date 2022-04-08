@@ -1,13 +1,15 @@
 const SET_PRODUCT = 'SET_PRODUCT',
+    SET_PRODUCT_ID = 'SET_PRODUCT_ID',
      SET_CURRENCY = 'SET_CURRENCY',
      SET_MAIN_IMG = 'SET_MAIN_IMG',
      CHANGE_ATTRIBUTE_ITEM = 'CHANGE_ATTRIBUTE_ITEM';
 
 let initialState = {
-    product: null,
+    productId: null, //rendered from ProductsListPage
+    details: null,
     mainImg: null,
-    activeAttribute: null,
-    currencyLabel: 'USD'
+    // activeAttribute: null,
+    // attributes: null
 }
 
 const ProductReducer = (state = initialState, action) => {
@@ -15,8 +17,34 @@ const ProductReducer = (state = initialState, action) => {
         case SET_PRODUCT: {
             return {
                 ...state,
-                product: {...action.product}
+                details: {
+                    ...action.details,
+                    attributes: [
+                        ...action.details.attributes.map(attribute => {
+                            return {
+                                ...attribute,
+                                items: [
+                                    ...attribute.items.map(item => {
+                                        return {
+                                            active: false,
+                                            ...item
+                                        }
+                                    })
+                                ]
+                            }
+    
+                        })
+                    ]
+                }
             }
+        }
+
+        case SET_PRODUCT_ID: {
+            return {
+                ...state,
+                productId: action.productId
+            }
+
         }
 
         case SET_MAIN_IMG: {
@@ -29,7 +57,29 @@ const ProductReducer = (state = initialState, action) => {
         case CHANGE_ATTRIBUTE_ITEM: {
             return {
                 ...state,
-                activeAttribute: action.itemId
+                details: {
+                    ...state.details,
+                    attributes: [...state.details.attributes.map(attribute => {
+                        if(attribute.id === action.attributeId) {
+                            return {
+                                ...attribute,
+                                items: [...attribute.items.map(item => {
+                                    if(item.id === action.itemId) {
+                                        return {
+                                            ...item, 
+                                            active: true,
+                                        }
+                                    }
+                                    return {
+                                        ...item,
+                                        active: false
+                                    }
+                                })]
+                            }
+                        }
+                        return attribute
+                    })
+                ]}
             }
         }
 
@@ -46,10 +96,17 @@ const ProductReducer = (state = initialState, action) => {
     }
 }
 
-export const setProduct = (product) => {
+export const setProduct = (details) => {
     return {
         type: SET_PRODUCT,
-        product
+        details
+    }
+}
+
+export const setProductId = (productId) => {
+    return {
+        type: SET_PRODUCT_ID,
+        productId
     }
 }
 
@@ -67,9 +124,10 @@ export const setMainImg = (img) => {
     }
 }
 
-export const changeAttributeItem = (itemId) => {
+export const changeAttributeItem = (attributeId, itemId) => {
     return {
         type: CHANGE_ATTRIBUTE_ITEM,
+        attributeId,
         itemId
     }
 }

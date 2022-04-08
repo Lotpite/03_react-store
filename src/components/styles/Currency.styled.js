@@ -27,9 +27,11 @@ export const CurrencyMenu = styled.div`
 
 export const DropdownMenu = styled.div`
     display: ${(props) => props.active ? "active" : "none"};
-    z-index: ${(props) => props.active ? "1" : "0"};
+    z-index: ${(props) => props.active ? "1 " : "0"};
+    position: : fixed;
     flex-direction: column;
     justify-content: space-around;
+    box-shadow: 0 0.5em 3rem -1rem rgba(0,0,0,0.5);
 
     ul {
         list-style: none;

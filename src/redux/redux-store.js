@@ -1,4 +1,5 @@
 import { combineReducers, createStore } from 'redux';
+import CartReducer from './cart-reducer';
 import CategoriesReducer from './categories-reducer';
 import CurrencyReducer from './currency-reducer';
 import ProductReducer from './product-reducer';
@@ -8,7 +9,8 @@ let reducers = combineReducers({
     products: ProductsReducer,
     categories: CategoriesReducer,
     product: ProductReducer,
-    currencies: CurrencyReducer
+    currencies: CurrencyReducer,
+    cart: CartReducer
 });
 
 

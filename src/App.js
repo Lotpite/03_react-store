@@ -1,7 +1,9 @@
 import { Component } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import Header from './components/Header/Header';
 import ProductsListPageContainer from './components/ProductCard/ProductsListPageContainer';
+import ProductDescriptionPageContainer from './components/ProductPage/ProductDescriptionPageContainer';
 
 class App extends Component {
 
@@ -18,7 +20,10 @@ class App extends Component {
       <div className="App">
         <GlobalStyle/>
         <Header />
-        <ProductsListPageContainer />
+        <Routes>
+          <Route path="categories/:id" element={<ProductsListPageContainer/>}/>
+          <Route path="products/:id" element={<ProductDescriptionPageContainer/>} />
+        </Routes>
       </div>
     )
   }

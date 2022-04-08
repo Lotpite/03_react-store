@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const ProductPageWrapper = styled.div`
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
     margin-left: 100px;
     margin-right: 219px
 `
@@ -79,23 +80,25 @@ export const AttributeTitle = styled.p`
 export const AttributesWrapper = styled.div`
     display: flex;
     flex-direction: row;
+    justify-content: left;    
 `
 
 export const AttributeItem = styled.span`
     width: 63px;
     height: 45px;
     border: 2px solid;
-    background: #FFFFFF;
-    padding: 12px;
+    background: ${props => props.active ? '#292929' : '#FFFFFF'};
+    color: ${props => props.active ? '#FFFFFF' : '#292929'};
+    // padding-top: 12px;
     margin-right: 12px;
     text-align: center;
-    align-items: center;
+    line-height: 40px;
+    vertical-align: middle
     font-family: 'Source Sans Pro';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     letter-spacing: 0.05em;
-    color: #292929;
     :hover {
         cursor: pointer;
     }

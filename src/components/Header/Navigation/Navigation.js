@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { StyledNavigation, NavItem, activeNavITem } from "../../styles/Navigation.styled";
+import { Link } from "react-router-dom";
 
 export default class extends Component {
     render () {
@@ -9,7 +10,9 @@ export default class extends Component {
 
             return (
                 <NewItem key={category.id} onClick={() => this.props.onCategoryChange(category.id)}>
-                    {category.name}
+                    <Link to={`categories/${category.id}`}>
+                        {category.name}
+                    </Link>
                 </NewItem>
             )
         })

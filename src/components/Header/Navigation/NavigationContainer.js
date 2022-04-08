@@ -5,15 +5,15 @@ import { connect } from 'react-redux';
 import { setCategories, changeActiveCategory, isFetching } from '../../../redux/categories-reducer';
 import { setProducts } from '../../../redux/products-reducer';
 import Navigation from "./Navigation";
+import { withRouter } from 'react-router-dom';
 
 
 class NavigationContainer extends Component {
 
-    ProuctSerivce = new ProductService();
+    ProductSerivce = new ProductService();
 
     componentDidMount() {
-
-        this.ProuctSerivce
+        this.ProductSerivce
         .getCategoriesList()
             .then(res => {
                 this.props.setCategories(res)
@@ -22,7 +22,7 @@ class NavigationContainer extends Component {
     }
           
     onCategoryChange = (categoryId) => {
-        this.ProuctSerivce
+        this.ProductSerivce
             .getProductsByCategoryName(categoryId)
                 .then(res => {
                     // console.log(res)
@@ -45,6 +45,7 @@ class NavigationContainer extends Component {
         );
     }
 }
+
 
 const mapStateToProps = (state) => {
     return {

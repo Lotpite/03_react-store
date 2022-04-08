@@ -2,32 +2,34 @@ import React, { Component } from 'react';
 import { ProductPageWrapper, ProductImgsList, ProductMainImg, ProductDescriptionBlock, DescriptionTitle, DescriptionSubtitle, AttributesBlock, AttributeTitle, AttributesWrapper, AttributeItem, ActiveAttributeItem, StyledButton, Description, PriceBlock, PriceTitle, PriceAmount } from '../styles/ProductPage.styled';
 import { Spinner } from '../styles/Spinner.styled';
 
-class PDP extends Component {
+class ProductDescriptionPage extends Component {
 
     render() { 
         // check if product props are not empty
-        if(!this.props.product) {
+        if(!this.props.product.details) {
            return <Spinner/>  
         }
-
-        //create IMG list in sidebar of PDP
-        let imgList = this.props.product.gallery.map(img => {
+        //create IMG list in sidebar of ProductDescriptionPage
+        let imgList = this.props.product.details.gallery.map(img => {
+            // debugger
             return (
                 <span key={img}>
-                    <img src={img} alt={this.props.product.brand} onClick={() => this.props.changeImg(img)}/>
+                    <img src={img} alt={this.props.product.details.brand} onClick={() => this.props.changeImg(img)}/>
                 </span>
             )
         })
 
+
         // Get attributes
-        let attributes = this.props.product.attributes.map(type => {
+        let attributes = this.props.product.details.attributes.map(type => {
            // getType of attribute
            let title = (<AttributeTitle key={type.id}>{type.name}</AttributeTitle>)       
            
            // getAttributeItems (is not working while using in-line expression)
            let items = type.items.map(item => {       
-             let NewAttributeItem = item.id === this.props.activeAttribute ? ActiveAttributeItem : AttributeItem  // active ch
-               return (<NewAttributeItem key={item.id} onClick={() => this.props.changeActiveAttribute(item.id)}>{item.displayValue}</NewAttributeItem>)}) 
+            //  let NewAttributeItem = item.id === this.props.product.activeAttribute ? ActiveAttributeItem : AttributeItem  // active ch
+            //  debugger
+               return (<AttributeItem key={item.id} active={item.active} onClick={() => this.props.changeActiveAttribute(type.id, item.id)}>{item.displayValue}</AttributeItem>)}) 
             // return main Attributes block
            return (
                <AttributesBlock key={type.id}>
@@ -38,10 +40,11 @@ class PDP extends Component {
                </AttributesBlock>
            )
         })
+       
 
         //Get Price
-         let price = this.props.product.prices.map(item => {
-            if(item.currency.label === this.props.currency) {
+         let price = this.props.product.details.prices.map(item => {
+            if(item.currency.label === this.props.currentCurrency.label) {
                 return (
                     <PriceBlock key={item.currency.label}>
                         <PriceTitle>
@@ -57,8 +60,8 @@ class PDP extends Component {
          })
 
          // transformDescription
-         let description = this.props.product.description.replace(/<\/?[a-zA-Z]+>/gi,'');
-
+         let description = this.props.product.details.description.replace(/<\/?[a-zA-Z]+>/gi,'');
+         
 
         //main return
         return ( 
@@ -67,14 +70,14 @@ class PDP extends Component {
                     {imgList}
                 </ProductImgsList>
                 <ProductMainImg>
-                    <img src={this.props.mainImg} alt={this.props.product.brand} />
+                    <img src={this.props.product.mainImg} alt={this.props.product.details.brand} />
                 </ProductMainImg>
                 <ProductDescriptionBlock>
-                    <DescriptionTitle>{this.props.product.name}</DescriptionTitle>
-                    <DescriptionSubtitle>{this.props.product.brand}</DescriptionSubtitle>
+                    <DescriptionTitle>{this.props.product.details.name}</DescriptionTitle>
+                    <DescriptionSubtitle>{this.props.product.details.brand}</DescriptionSubtitle>
                     {attributes}
                     {price}
-                    <StyledButton>Add to cart</StyledButton>
+                    <StyledButton onClick={() => this.props.addToCart(this.props.product.productId, this.props.product.details)}>Add to cart</StyledButton>
                     <Description>
                         {description}
                     </Description>
@@ -84,4 +87,4 @@ class PDP extends Component {
     }
 }
  
-export default PDP;
+export default ProductDescriptionPage;

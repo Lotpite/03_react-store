@@ -4,8 +4,8 @@ const SET_PRODUCTS = 'SET_PRODUCTS',
 
 let initialState = {
     productsList: null,
-    isFetching: false,
-    currentCurrency: null
+    isFetching: false
+    // currentCurrency: null
 }
 
 const ProductsReducer = (state = initialState, action) => {
