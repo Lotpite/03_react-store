@@ -13,7 +13,7 @@ export const ProductImgsList = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100px;
-    border: 2px solid;
+    // border: 2px solid;
     tex: center;
 
     img {
@@ -28,7 +28,7 @@ export const ProductImgsList = styled.div`
 
 export const ProductMainImg = styled.div`
     margin-left: 40px;
-    border: 2px solid;
+    // border: 2px solid;
     width: 610px;
 
     img {
@@ -62,7 +62,7 @@ export const DescriptionSubtitle = styled.p`
 `
 
 export const AttributesBlock = styled.div`
-    margin-top: 40px;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
 `

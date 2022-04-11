@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { CardItem, CardContainer } from '../styles/ProductCard.styled'
+import { CardItem, CardContainer, CartSpan, MainImg } from '../styles/ProductCard.styled'
 import { Spinner } from '../styles/Spinner.styled';
 import { Link } from 'react-router-dom';
+import greenCart from '../../assets/images/greenCart.png'
 
 class ProductsListPage extends Component {
     render() { 
@@ -21,8 +22,12 @@ class ProductsListPage extends Component {
             })
             return (
                 <CardItem key={product.id}>
-                    <img src={product.gallery[0]} alt="" />
-                    <Link to={`/products/${product.id}`} onClick={()=> this.props.setProductId(product.id)}>GO</Link>
+                    <MainImg src={product.gallery[0]} alt="" />
+                    <Link to={`/products/${product.id}`} onClick={()=> this.props.setProductId(product.id)}>
+                        <CartSpan>
+                            <img src={greenCart} alt="addToCart"/>
+                        </CartSpan>
+                    </Link>
                     <h3>{product.name}</h3>
                         {details}
                 </CardItem>

@@ -11,7 +11,10 @@ const CartReducer = (state = initialState, action) => {
                 ...state,
                productList: [
                    ...state.productList,
-                   action.productDetails
+                   {...action.productDetails,
+                    quantity: 1,
+                    imgIndex: 0
+                    }
                ]
             }
         }

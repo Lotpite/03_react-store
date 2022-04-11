@@ -48,7 +48,7 @@ class ProductDescriptionPage extends Component {
                 return (
                     <PriceBlock key={item.currency.label}>
                         <PriceTitle>
-                            {item.currency.label}
+                            Price
                         </PriceTitle>
                         <PriceAmount>
                             <span>{item.currency.symbol}</span>
@@ -77,7 +77,7 @@ class ProductDescriptionPage extends Component {
                     <DescriptionSubtitle>{this.props.product.details.brand}</DescriptionSubtitle>
                     {attributes}
                     {price}
-                    <StyledButton onClick={() => this.props.addToCart(this.props.product.productId, this.props.product.details)}>Add to cart</StyledButton>
+                    <StyledButton onClick={() => this.props.addToCart(this.props.product.details)}>Add to cart</StyledButton>
                     <Description>
                         {description}
                     </Description>

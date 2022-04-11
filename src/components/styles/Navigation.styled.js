@@ -3,9 +3,10 @@ import styled from "styled-components"
 export const StyledNavigation = styled.div `
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    justify-content: space-between;
     width: 234px;
     height: 56px;
+    margin-left: 100px;
 `;
 
 export const NavItem = styled.div `
