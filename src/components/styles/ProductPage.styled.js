@@ -3,16 +3,16 @@ import styled from "styled-components";
 export const ProductPageWrapper = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-left: 100px;
-    margin-right: 219px
+    margin-right: 125px
 `
 
 export const ProductImgsList = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100px;
+    // width: 100px;
     // border: 2px solid;
     tex: center;
 
@@ -40,14 +40,14 @@ export const ProductDescriptionBlock = styled.div`
     display: flex;
     flex-direction: column;
     margin-left: 100px;
-    width: 292px;
+    // width: 292px;
     text-align: left;
 `
 export const DescriptionTitle = styled.p`
     font-family: 'Raleway';
     font-style: normal;
-    font-weight: 600;
-    font-size: 30px;
+    font-weight: 300; // 600
+    font-size: 16px; //30
     align-items: left;
     color: #1D1F22;
 `
@@ -55,14 +55,14 @@ export const DescriptionTitle = styled.p`
 export const DescriptionSubtitle = styled.p`
     font-family: 'Raleway';
     font-style: normal;
-    font-weight: 400;
-    font-size: 30px;
+    font-weight: 300; // 400
+    font-size: 16px; //30
     align-items: left;
     color: #1D1F22;
 `
 
 export const AttributesBlock = styled.div`
-    margin-top: 20px;
+    margin-top: 5px; //20
     display: flex;
     flex-direction: column;
 `
@@ -70,8 +70,8 @@ export const AttributesBlock = styled.div`
 export const AttributeTitle = styled.p`
     font-family: 'Roboto Condensed';
     font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
+    font-weight: 500; //700
+    font-size: 16px; //18
     align-items: left;
     text-align: left;
     color: #1D1F22;
@@ -84,20 +84,22 @@ export const AttributesWrapper = styled.div`
 `
 
 export const AttributeItem = styled.span`
-    width: 63px;
-    height: 45px;
-    border: 2px solid;
+    display: flex;
+    justify-content: center;
+    width: 35px; //70
+    height: 25px; //45
+    text-align: center;
+    align-items: center;
+    border: 1px solid; // 2
     background: ${props => props.active ? '#292929' : '#FFFFFF'};
     color: ${props => props.active ? '#FFFFFF' : '#292929'};
-    // padding-top: 12px;
-    margin-right: 12px;
-    text-align: center;
-    line-height: 40px;
-    vertical-align: middle
+    // padding-left: 1px;
+    margin-right: 2px; //10
+    
     font-family: 'Source Sans Pro';
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 12px; //16
     letter-spacing: 0.05em;
     :hover {
         cursor: pointer;
@@ -153,13 +155,16 @@ export const PriceTitle = styled.p`
 `
 export const PriceAmount = styled.div`
     margin-top: 20px;
+    // margin-left: 0px;;
     display: flex;
     flex-direction: row;
+    // justify-content: space-between;
+    
 
     font-family: 'Raleway';
     font-style: normal;
-    font-weight: 700;
-    font-size: 24px;
+    font-weight: 500; //700
+    font-size: 16px; //24
     line-height: 18px;
     align-items: center;
 

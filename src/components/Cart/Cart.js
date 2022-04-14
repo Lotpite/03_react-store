@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { ItemContent, ItemWrapper, ProductImgsBlock, ProductDescriptionBlock, Slider, Change, ImgWrapper, PrevSlide, NextSlide } from '../styles/Cart.styled';
-import { AttributeItem, AttributesBlock, AttributesWrapper, DescriptionSubtitle, DescriptionTitle, PriceAmount } from '../styles/ProductPage.styled';
+import { ItemContent, ItemWrapper, ProductImgsBlock, ProductDescriptionBlock, Counter, Change, ImgWrapper, PrevSlide, NextSlide, Line, Quantity } from '../styles/Cart.styled';
+import { AttributeItem, AttributesBlock, AttributesWrapper, AttributeTitle, DescriptionSubtitle, DescriptionTitle, PriceAmount } from '../styles/ProductPage.styled';
 import { Spinner } from '../styles/Spinner.styled';
 
 class Cart extends Component {
@@ -11,19 +11,18 @@ class Cart extends Component {
 
         let content = this.props.productList.map(product => {
             let mainImg = product.gallery[product.imgIndex]
-            debugger
             let attributes = product.attributes.map(attribute => {
                 let attributeItems = attribute.items.map(item => {
 
                     return (
                         <AttributeItem key={item.id} active={item.active}>
-                            {item.displayValue}
+                            <p>{item.displayValue}</p>
                         </AttributeItem>
                     )
                 })
                 return (
                     <AttributesBlock key={attribute.id}>
-                            <h3>{attribute.name}</h3>
+                            <AttributeTitle>{attribute.name}</AttributeTitle>
                             <AttributesWrapper>
                                 {attributeItems}
                             </AttributesWrapper>
@@ -46,7 +45,7 @@ class Cart extends Component {
 
             return (
                 <ItemWrapper key={product.id}>
-                    <span>-------------------</span>
+                    <Line></Line>
                  <ItemContent>
                     <ProductDescriptionBlock>
                         <DescriptionTitle>{product.name}</DescriptionTitle>
@@ -55,17 +54,17 @@ class Cart extends Component {
                         {attributes}
                     </ProductDescriptionBlock>
                     <ProductImgsBlock>
-                        <Slider>
-                            <Change>+</Change>
-                            <span>{product.quantity}</span>
-                            <Change>-</Change>
-                        </Slider>
+                        <Counter>
+                            <Change onClick={() => this.props.changeQty(product.id, 1)}>+</Change>
+                            <Quantity>{product.quantity}</Quantity>
+                            <Change onClick={() => this.props.changeQty(product.id, -1)}>-</Change>
+                        </Counter>
                         <ImgWrapper>
-                            <PrevSlide>-</PrevSlide>
+                            <PrevSlide onClick={() => this.props.changeSlide(product.id, -1)}>{'<'}</PrevSlide>
                             <span>
                                 <img src={mainImg}></img>
                             </span>
-                            <NextSlide>+</NextSlide>
+                            <NextSlide onClick={() => this.props.changeSlide(product.id, 1)}>{'>'}</NextSlide>
                         </ImgWrapper>
                     </ProductImgsBlock>
                 </ItemContent>

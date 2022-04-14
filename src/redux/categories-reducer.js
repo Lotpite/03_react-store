@@ -15,7 +15,7 @@ const CategoriesReducer = (state = initialState, action) => {
            
             return {
                 ...state, 
-                categoriesList: action.categoriesList.map((category, i) => {
+                categoriesList: action.categoriesList.map((category) => {
                         return {
                             ...category,
                             id: category.name

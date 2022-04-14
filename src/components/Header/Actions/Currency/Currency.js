@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { CurrencyMenu, CurrencyWrapper, DropdownMenu, activeDropdownMenu } from "../../../styles/Currency.styled";
-import arrowUp from '../../../../assets/images/arrowUp.png';
-import arrowDown from '../../../../assets/images/arrowDown.png';
+import arrowUp from '../../../../assets/images/arrowUp.svg';
+import arrowDown from '../../../../assets/images/arrowDown.svg';
 
 
 export default class Currency extends Component {

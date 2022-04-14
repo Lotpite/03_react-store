@@ -2,6 +2,8 @@ import Cart from "./Cart";
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { StyledCategory } from "../styles/Category.styled";
+import { changeItemsQty, changeMainImg } from '../../redux/cart-reducer'
+import { CartName } from "../styles/Cart.styled";
 
 
 class CartContainer extends Component {
@@ -10,11 +12,23 @@ class CartContainer extends Component {
         console.log(this.props.cart.productList)
     }
 
+    changeQty = (productId, changeType) => {
+        this.props.changeItemsQty(productId, changeType)
+    }
+
+    changeSlide = (productId, changeType) => {
+        console.log(productId, changeType)
+        this.props.changeMainImg(productId, changeType)
+    }
+
     render() { 
         return (
             <StyledCategory>
-                <h2>Cart</h2>
-                <Cart productList={this.props.cart.productList} currentCurrency={this.props.currentCurrency}/>
+                <CartName>Cart</CartName>
+                <Cart productList={this.props.cart.productList}
+                 currentCurrency={this.props.currentCurrency}
+                 changeQty={this.changeQty} 
+                 changeSlide={this.changeSlide}/>
             </StyledCategory>
         );
     }
@@ -26,4 +40,9 @@ const mapStateToProps = (state) => {
         currentCurrency: state.currencies.activeCurrency
     }
 }
-export default connect(mapStateToProps, {})(CartContainer)
+
+
+export default connect(mapStateToProps, {
+    changeItemsQty,
+    changeMainImg
+})(CartContainer)
