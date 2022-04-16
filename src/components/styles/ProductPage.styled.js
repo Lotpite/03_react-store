@@ -65,6 +65,7 @@ export const AttributesBlock = styled.div`
     margin-top: 5px; //20
     display: flex;
     flex-direction: column;
+    // justify-conent: space-between;
 `
 
 export const AttributeTitle = styled.p`
@@ -80,21 +81,22 @@ export const AttributeTitle = styled.p`
 export const AttributesWrapper = styled.div`
     display: flex;
     flex-direction: row;
+    // justify-conent: space-between;
     justify-content: left;    
 `
 
 export const AttributeItem = styled.span`
     display: flex;
     justify-content: center;
-    width: 35px; //70
-    height: 25px; //45
+    width: 50px; //70
+    height: 35px; //45
     text-align: center;
     align-items: center;
     border: 1px solid; // 2
     background: ${props => props.active ? '#292929' : '#FFFFFF'};
     color: ${props => props.active ? '#FFFFFF' : '#292929'};
     // padding-left: 1px;
-    margin-right: 2px; //10
+    margin-right: 5px; //10
     
     font-family: 'Source Sans Pro';
     font-style: normal;

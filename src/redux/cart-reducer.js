@@ -1,19 +1,45 @@
 const ADD_PRODUCT = 'ADD_PRODUCT',
     CHANGE_ITEMS_QTY = 'CHANGE_ITEMS_QTY',
-    CHANGE_MAIN_IMG = 'CHANGE_MAIN_IMG';
+    CHANGE_MAIN_IMG = 'CHANGE_MAIN_IMG',
+    TOGGLE_OVERLAY_ACTIVE = 'TOGGLE_OVERLAY_ACTIVE';
 
 let initialState = {
-    productList: []
+    productList: [],
+    activeCartOverlay: false
 }
 
 const CartReducer = (state = initialState, action) => {
     switch(action.type) {
         case ADD_PRODUCT: {
+            
             return {
                 ...state,
                productList: [
                    ...state.productList,
-                   {...action.productDetails,
+
+                   {
+                    ...action.productDetails,
+                    attributes: action.productDetails.attributes.map(attribute => {
+                        return {
+                            ...attribute,
+                            items: [
+                                attribute.items.filter(item => item.active === false),
+                                attribute.items.find(item => item.active === true)
+                                
+                                // ...attribute.items.map(item => {
+                                //     return {
+                                //         ...item,
+                                //         active: true,
+                                //     }
+                                // })
+                            ]
+                            // items: [
+                                
+                            //     // attribute.items.find(item => item.active === true),
+                            //     // attribute.items.find(item => item.active === false)
+                            // ]
+                        }
+                    }),
                     quantity: 1,
                     imgIndex: 0
                     }
@@ -73,6 +99,13 @@ const CartReducer = (state = initialState, action) => {
                 ]
             }
         }
+        case TOGGLE_OVERLAY_ACTIVE: {
+            return {
+                ...state,
+                activeCartOverlay: action.isActive
+            }
+        }
+        
         default: {
             return state;
         }
@@ -99,6 +132,13 @@ export const changeMainImg = (productId, changeIndex) => {
         type: CHANGE_MAIN_IMG,
         productId,
         changeIndex
+    }
+}
+
+export const toggleOverlayActive = (isActive) => {
+    return {
+        type: TOGGLE_OVERLAY_ACTIVE,
+        isActive
     }
 }
 

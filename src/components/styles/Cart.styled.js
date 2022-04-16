@@ -22,7 +22,8 @@ export const ItemWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-right: 125px;
+    padding-left: 20px;
+    margin-right: 15px;
     // width: 1100px;
 `
 
@@ -30,28 +31,32 @@ export const ItemContent = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between; 
-
 `
 
 export const ProductDescriptionBlock = styled.div`
     display: flex;
     flex-direction: column;
-    width: 292px;
+    justify-content: space-between;
+    // width: 292px;
     text-align: left;
+    margin-bottom: 10px;
+    margin-right: 50px;
 `
 
 export const ProductImgsBlock = styled.div`
     display: flex;
     flex-direction: row;
-    width: 292px;
-    heigh: 185px;
-    text-align: left;
+    // width: 292px;
+    // heigh: 185px;
+    // text-align: left;
 `
 export const Counter = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
+    margin-bottom: 10px;
+
 `
 
 export const Change = styled.span`
@@ -89,9 +94,11 @@ export const ImgWrapper = styled.div`
 
     
     img {
-        position: absolute;
+        position: none; // absolute
         top: 30px;
         width: 100px; //100%
+    margin-bottom: 10px;
+
     }
 `
 
@@ -136,9 +143,97 @@ export const Line = styled.span`
 // Cart Overlay
 
 export const OverlayContainer = styled.div`
+    display: ${props => props.active ? '' : 'none'};
     position: absolute;
-    width: 300px;
-    left: 1004px;
+    // width: 350px;
+    left: 850px;
     // border-bottom: 2px solid;
     border-color: #black;
+    background-color: #FFFFFF;
+    z-index: 1;
+`
+
+export const Total = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+`
+
+export const TotalTitle = styled.p`
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    /* or 112% */
+
+
+    color: #1D1F22;
+
+`
+
+export const TotalAmount = styled.span`
+    
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 160%;
+    /* identical to box height, or 26px */
+
+    display: flex;
+    align-items: center;
+    text-align: right;
+
+    color: #1D1F22;
+`
+export const CartButtons = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 20px;
+`
+
+export const ViewBagButton = styled.button`
+    width: 140px;
+    // width: 45%;
+
+    height: 43px;
+    border: 1px solid;
+
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    color: #1D1F22;
+    :hover {
+        cursor: pointer;
+    }
+`
+
+export const CheckoutButton = styled.button`
+    height: 43px;
+    width: 140px;
+    // width: 45%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #5ECE7B;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    :hover {
+        cursor: pointer;
+    }
 `

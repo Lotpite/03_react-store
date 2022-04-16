@@ -19,7 +19,7 @@ class App extends Component {
       }
     `
     return (
-      <AppContainer>
+      <AppContainer >
         <GlobalStyle/>
         <Header />
         <Routes>

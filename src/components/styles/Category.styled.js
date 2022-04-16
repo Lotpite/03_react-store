@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledCategory = styled.div `
 // position: absolute;
 display: flex;
+overflow: hidden;
 flex-direction: column;
 margin-left: 100px;
 // width: 1440px;

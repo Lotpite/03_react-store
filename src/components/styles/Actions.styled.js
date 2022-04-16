@@ -23,6 +23,9 @@ export const CartSymbol = styled.span`
         width: 20px;
         height: 20px;
     }
+    :hover {
+        cursor: pointer;
+    }
 `
 
 export const ItemsQty = styled.span`

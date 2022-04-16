@@ -5,6 +5,7 @@ export const CardContainer = styled.div `
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
+    margin-left: 20px;
 `
 
 export const CartSpan = styled.span`

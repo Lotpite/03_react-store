@@ -9,6 +9,8 @@ class Cart extends Component {
             return <Spinner />
         }
 
+        console.log(this.props.productList)
+
         let content = this.props.productList.map(product => {
             let mainImg = product.gallery[product.imgIndex]
             let attributes = product.attributes.map(attribute => {
