@@ -46,8 +46,8 @@ export const ProductDescriptionBlock = styled.div`
 export const DescriptionTitle = styled.p`
     font-family: 'Raleway';
     font-style: normal;
-    font-weight: 300; // 600
-    font-size: 16px; //30
+    font-weight: ${props => props.isBig ? '600' : '300'};
+    font-size: ${props => props.isBig ? '30px' : '16px'};
     align-items: left;
     color: #1D1F22;
 `
@@ -55,8 +55,8 @@ export const DescriptionTitle = styled.p`
 export const DescriptionSubtitle = styled.p`
     font-family: 'Raleway';
     font-style: normal;
-    font-weight: 300; // 400
-    font-size: 16px; //30
+    font-weight: ${props => props.isBig ? '400' : '300'};
+    font-size: ${props => props.isBig ? '30px' : '16px'};
     align-items: left;
     color: #1D1F22;
 `
@@ -71,11 +71,12 @@ export const AttributesBlock = styled.div`
 export const AttributeTitle = styled.p`
     font-family: 'Roboto Condensed';
     font-style: normal;
-    font-weight: 500; //700
-    font-size: 16px; //18
+    font-weight: ${props => props.isBig ? '700' : '500'};
+    font-size: ${props => props.isBig ? "18px" : "16px"};
     align-items: left;
     text-align: left;
     color: #1D1F22;
+    margin: ${props => props.isBig ? "20px 0 20px 0" : "0px"};
 `
 
 export const AttributesWrapper = styled.div`
@@ -88,8 +89,8 @@ export const AttributesWrapper = styled.div`
 export const AttributeItem = styled.span`
     display: flex;
     justify-content: center;
-    width: 50px; //70
-    height: 35px; //45
+    width: ${props => props.isBig ? '70px' : '50px'};
+    height: ${props => props.isBig ? '45px' : '35px'};
     text-align: center;
     align-items: center;
     border: 1px solid; // 2
@@ -101,7 +102,7 @@ export const AttributeItem = styled.span`
     font-family: 'Source Sans Pro';
     font-style: normal;
     font-weight: 400;
-    font-size: 12px; //16
+    font-size: ${props => props.isBig ? '16px' : '12px'};
     letter-spacing: 0.05em;
     :hover {
         cursor: pointer;
@@ -165,8 +166,8 @@ export const PriceAmount = styled.div`
 
     font-family: 'Raleway';
     font-style: normal;
-    font-weight: 500; //700
-    font-size: 16px; //24
+    font-weight: ${props => props.isBig ? '700' : '500'};
+    font-size: ${props => props.isBig ? '24px' : '16px'};
     line-height: 18px;
     align-items: center;
 

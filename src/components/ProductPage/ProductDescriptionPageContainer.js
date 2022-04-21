@@ -51,7 +51,8 @@ class ProductDescriptionPageContainer extends Component {
                 currentCurrency = {this.props.currentCurrency}
                 changeImg={this.changeImg}
                 changeActiveAttribute={this.changeActiveAttributeItem}
-                addToCart={this.addToCart}/>
+                addToCart={this.addToCart}
+                isBig={this.props.product.isActiveBig}/>
         );
     }
 }

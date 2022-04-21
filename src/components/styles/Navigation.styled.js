@@ -3,19 +3,22 @@ import { Link } from "react-router-dom";
 
 export const StyledLink = styled(Link)`
     margin-right: 32px;
-    text-transform: uppercase;
     text-decoration: none;
-    color: ${props => props.active ? '#5ECE7B' : '#1D1F22'};
-    font-family: 'Raleway';
-    font-style: normal;
-    font-weight: ${props => props.active ? '600' : '400'};
-    font-size: 16px;
+    text-transform: uppercase;
+
     align-items: center;
     text-align: center;
-    text-transform: uppercase;
     :hover {
         cursor: pointer;
     }
+`
+
+export const CategoryName = styled.p`
+    color: ${props => props.active === true ? '#5ECE7B' : '#1D1F22'};
+    font-weight: ${props => props.active  === true  ? '600' : '400'};
+    font-size: 16px;
+    font-family: 'Raleway';
+    font-style: normal;
 `
 
 export const StyledNavigation = styled.div `

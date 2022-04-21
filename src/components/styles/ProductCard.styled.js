@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.div `
+
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -9,15 +10,27 @@ export const CardContainer = styled.div `
 `
 
 export const CartSpan = styled.span`
-        visibility: hidden;
-
+    visibility: hidden;
+    position: absolute;
+    left: 78%;
+    top: 70%;
     img {
         width: 52px;
         height: 52px;
     }
 `
+export const OutStockLabel = styled.span`
+    position: absolute;
+    top: 40%;
+    left: 35%;
+    display: ${props => props.inStock ? 'none' : ""};
+    opacity: 0.5;
+`
+
 
 export const CardItem = styled.div `
+    position: relative;
+    // display: disabled;
     flex: 0 33%
     width: 300px;
     height: 444px;
@@ -26,7 +39,7 @@ export const CardItem = styled.div `
     margin-right: 40px;
     padding: 16px;
     text-align: left;
-
+    opacity: ${props => props.inStock ? 1 : 0.5};
     h3 {
         margin-top: 15px;
         font-family: 'Raleway';
@@ -35,12 +48,13 @@ export const CardItem = styled.div `
         font-size: 18px;
         text-align: left;
         color: #1D1F22;
+        opacity: 0.8;
     }
 
     p {
         font-family: 'Raleway';
         font-style: normal;
-        font-weight: 500;
+        font-weight: 700;
         font-size: 18px;
         text-align: left;
         color: #1D1F22;
@@ -58,6 +72,7 @@ export const MainImg = styled.img`
     width: 280px;
     height: 320px;
 `
+
 
 
 

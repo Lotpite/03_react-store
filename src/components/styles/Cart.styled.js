@@ -22,7 +22,7 @@ export const ItemWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-left: 20px;
+    padding-left: 10px;
     margin-right: 15px;
     // width: 1100px;
 `
@@ -31,6 +31,8 @@ export const ItemContent = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between; 
+    margin-bottom: 20px;
+
 `
 
 export const ProductDescriptionBlock = styled.div`
@@ -48,7 +50,6 @@ export const ProductImgsBlock = styled.div`
     flex-direction: row;
     // width: 292px;
     // heigh: 185px;
-    // text-align: left;
 `
 export const Counter = styled.div`
     display: flex;
@@ -61,11 +62,12 @@ export const Counter = styled.div`
 
 export const Change = styled.span`
     display: flex;  
-    width: 22px; //45
-    height: 22px; //45
+    width: ${props => props.isBig ? "45px" : "22px"};
+    height: ${props => props.isBig ? "45px" : "22px"};
     border: 2px solid;
+    font-size: ${props => props.isBig ? "24px" : "16px"};
     // padding-bottom: 12px;
-    line-height: 14px; //35
+    line-height: ${props => props.isBig ? "35px" : "14px"};
     justify-content: space-around; 
     text-align: center;
     :hover {
@@ -77,10 +79,8 @@ export const Quantity = styled.span`
     font-family: 'Raleway';
     font-style: normal;
     font-weight: 500; 
-    font-size: 16px; //24
+    font-size: ${props => props.isBig ? "24px" : "16px"};
     line-height: 160%;
-    /* or 38px */
-
     align-items: center;
     text-align: center;
 
@@ -89,17 +89,15 @@ export const Quantity = styled.span`
 
 export const ImgWrapper = styled.div`
     position: relative;
-    margin-left: 20px;
-    // background-color: #393748;
+    display: flex;
+    margin-left: 20px;  
+`
 
-    
-    img {
-        position: none; // absolute
-        top: 30px;
-        width: 100px; //100%
+export const CartImg = styled.img`
+    position: relative;
+    // top: 30px;
+    width: ${props => props.isBig ? "241px" : "100px"};
     margin-bottom: 10px;
-
-    }
 `
 
 export const PrevSlide = styled.span`
@@ -109,11 +107,12 @@ export const PrevSlide = styled.span`
     color: #5ECE7B;
     top: 42%;
     left: 0;
+    z-index: 1;
     :hover {
         cursor: pointer;
     }
 
-    display: none;
+    display: ${props => props.isBig ? "block" : "none"};
 `
 
 export const NextSlide = styled.span`
@@ -122,19 +121,18 @@ export const NextSlide = styled.span`
     font-size: 24px;
     color: #5ECE7B;
     top: 42%;
+    z-index: 1;
     right: 0;
     :hover {
         cursor: pointer;
     }
 
-    display: none;
-
-
+    display: ${props => props.isBig ? "block" : "none"};
 `
 
 export const Line = styled.span`
     margin: 20px 0 20px 0;
-    border-bottom: 2px solid;
+    // border-bottom: 2px solid;
     border-color: #E5E5E5;
     heigh: 10px;
     width: 100%;
@@ -145,19 +143,33 @@ export const Line = styled.span`
 export const OverlayContainer = styled.div`
     display: ${props => props.active ? '' : 'none'};
     position: absolute;
-    // width: 350px;
-    left: 850px;
+    width: 325px;
+    left: 975px;
     // border-bottom: 2px solid;
     border-color: #black;
     background-color: #FFFFFF;
     z-index: 1;
 `
 
+export const MyBagTitle = styled.p`
+    margin-left: 10px;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 160%;
+    /* identical to box height, or 26px */
+
+    text-align: left;
+
+    color: #1D1F22;
+`
+
 export const Total = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 20px;
+    padding: 10px;
 `
 
 export const TotalTitle = styled.p`
@@ -166,9 +178,6 @@ export const TotalTitle = styled.p`
     font-weight: 500;
     font-size: 16px;
     line-height: 18px;
-    /* or 112% */
-
-
     color: #1D1F22;
 
 `
@@ -180,8 +189,6 @@ export const TotalAmount = styled.span`
     font-weight: 700;
     font-size: 16px;
     line-height: 160%;
-    /* identical to box height, or 26px */
-
     display: flex;
     align-items: center;
     text-align: right;
@@ -191,8 +198,9 @@ export const TotalAmount = styled.span`
 export const CartButtons = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    margin-bottom: 20px;
+    justify-content: space-between;
+    // margin-bottom: 20px;
+    padding: 0 10px 20px 10px;
 `
 
 export const ViewBagButton = styled.button`

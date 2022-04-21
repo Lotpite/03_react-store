@@ -23,13 +23,24 @@ class ProductDescriptionPage extends Component {
         // Get attributes
         let attributes = this.props.product.details.attributes.map(type => {
            // getType of attribute
-           let title = (<AttributeTitle key={type.id}>{type.name}</AttributeTitle>)       
+           let title = (
+                <AttributeTitle key={type.id}
+                    isBig={this.props.isBig}>
+                    {type.name}
+                </AttributeTitle>
+            )       
            
            // getAttributeItems (is not working while using in-line expression)
            let items = type.items.map(item => {       
             //  let NewAttributeItem = item.id === this.props.product.activeAttribute ? ActiveAttributeItem : AttributeItem  // active ch
             //  debugger
-               return (<AttributeItem key={item.id} active={item.active} onClick={() => this.props.changeActiveAttribute(type.id, item.id)}>{item.displayValue}</AttributeItem>)}) 
+               return (
+                    <AttributeItem key={item.id}
+                        active={item.active} 
+                        onClick={() => this.props.changeActiveAttribute(type.id, item.id)}
+                        isBig={this.props.isBig}>
+                        {item.displayValue}
+                    </AttributeItem>)}) 
             // return main Attributes block
            return (
                <AttributesBlock key={type.id}>
@@ -47,10 +58,10 @@ class ProductDescriptionPage extends Component {
             if(item.currency.label === this.props.currentCurrency.label) {
                 return (
                     <PriceBlock key={item.currency.label}>
-                        <PriceTitle>
+                        <PriceTitle isBig={this.props.isBig}>
                             Price
                         </PriceTitle>
-                        <PriceAmount>
+                        <PriceAmount isBig={this.props.isBig}>
                             <span>{item.currency.symbol}</span>
                             <span>{item.amount}</span>
                         </PriceAmount>
@@ -58,11 +69,7 @@ class ProductDescriptionPage extends Component {
                 )
             }
          })
-
-         // transformDescription
-         let description = this.props.product.details.description.replace(/<\/?[a-zA-Z]+>/gi,'');
          
-
         //main return
         return ( 
             <ProductPageWrapper>
@@ -73,13 +80,12 @@ class ProductDescriptionPage extends Component {
                     <img src={this.props.product.mainImg} alt={this.props.product.details.brand} />
                 </ProductMainImg>
                 <ProductDescriptionBlock>
-                    <DescriptionTitle>{this.props.product.details.name}</DescriptionTitle>
-                    <DescriptionSubtitle>{this.props.product.details.brand}</DescriptionSubtitle>
+                    <DescriptionTitle isBig={this.props.isBig}>{this.props.product.details.name}</DescriptionTitle>
+                    <DescriptionSubtitle isBig={this.props.isBig}>{this.props.product.details.brand}</DescriptionSubtitle>
                     {attributes}
                     {price}
                     <StyledButton onClick={() => this.props.addToCart(this.props.product.details)}>Add to cart</StyledButton>
-                    <Description>
-                        {description}
+                    <Description dangerouslySetInnerHTML={{__html: this.props.product.details.description}}>
                     </Description>
                 </ProductDescriptionBlock>
             </ProductPageWrapper>

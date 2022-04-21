@@ -1,19 +1,24 @@
 import { Component } from "react";
-import { StyledNavigation, NavItem, activeNavITem, StyledLink } from "../../styles/Navigation.styled";
+import { StyledNavigation, NavItem, activeNavITem, StyledLink, CategoryName } from "../../styles/Navigation.styled";
 import { Link } from "react-router-dom";
+import { Spinner } from "../../styles/Spinner.styled";
 
 export default class extends Component {
     render () {
+        if(!this.props.categories.categoriesList) {
+            return <Spinner/>
+        }
+
         let categoriesList = this.props.categories.categoriesList.map(category => { 
-
-            let NewItem = this.props.categories.activeCategory === category.id ? activeNavITem : NavItem  //change active class
-
             return (
-                // <NewItem key={category.id} onClick={() => this.props.onCategoryChange(category.id)}>
-                    <StyledLink to={`categories/${category.id}`} key={category.id} onClick={() => this.props.onCategoryChange(category.id)}>
-                        {category.name}
+                    <StyledLink to={`categories/${category.id}`} 
+                    key={category.id} 
+                    onClick={() => this.props.onCategoryChange(category.id)} 
+                    >
+                        <CategoryName active={category.active}>
+                            {category.name}
+                        </CategoryName>
                     </StyledLink>
-                // </NewItem>
             )
         })
         return (

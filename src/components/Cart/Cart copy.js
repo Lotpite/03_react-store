@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ItemContent, ItemWrapper, ProductImgsBlock, ProductDescriptionBlock, Counter, Change, ImgWrapper, PrevSlide, NextSlide, Line, Quantity, CartImg } from '../styles/Cart.styled';
+import { ItemContent, ItemWrapper, ProductImgsBlock, ProductDescriptionBlock, Counter, Change, ImgWrapper, PrevSlide, NextSlide, Line, Quantity } from '../styles/Cart.styled';
 import { AttributeItem, AttributesBlock, AttributesWrapper, AttributeTitle, DescriptionSubtitle, DescriptionTitle, PriceAmount } from '../styles/ProductPage.styled';
 import { Spinner } from '../styles/Spinner.styled';
 
@@ -9,22 +9,21 @@ class Cart extends Component {
             return <Spinner />
         }
 
+
         let content = this.props.productList.map(product => {
             let mainImg = product.gallery[product.imgIndex]
             let attributes = product.attributes.map(attribute => {
                 let attributeItems = attribute.items.map(item => {
 
                     return (
-                        <AttributeItem key={item.id}
-                         active={item.active}
-                         isBig={this.props.isActiveCart}>
+                        <AttributeItem key={item.id} active={item.active}>
                             <p>{item.displayValue}</p>
                         </AttributeItem>
                     )
                 })
                 return (
                     <AttributesBlock key={attribute.id}>
-                            <AttributeTitle isBig={this.props.isActiveCart}>{attribute.name}</AttributeTitle>
+                            <AttributeTitle>{attribute.name}</AttributeTitle>
                             <AttributesWrapper>
                                 {attributeItems}
                             </AttributesWrapper>
@@ -35,8 +34,8 @@ class Cart extends Component {
             let prices = product.prices.map(price => {
                 if(price.currency.label === this.props.currentCurrency.label) {
                     return (
-                        <PriceAmount key={price.currency.label} isBig={this.props.isActiveCart}>
-                             <span >{price.currency.symbol}</span>
+                        <PriceAmount key={price.label}>
+                             <span>{price.currency.symbol}</span>
                              <span>{price.amount}</span>
                          </PriceAmount>
                     )
@@ -46,36 +45,38 @@ class Cart extends Component {
             
 
             return (
-                 <ItemContent key={product.id}>
-                    <ProductDescriptionBlock key={product.name} isBig={this.props.isActiveCart}>
-                        <DescriptionTitle isBig={this.props.isActiveCart}>{product.name}</DescriptionTitle>
-                        <DescriptionSubtitle isBig={this.props.isActiveCart}>{product.brand}</DescriptionSubtitle>
+                <ItemWrapper key={product.id}>
+                    <Line></Line>
+                 <ItemContent>
+                    <ProductDescriptionBlock>
+                        <DescriptionTitle>{product.name}</DescriptionTitle>
+                        <DescriptionSubtitle>{product.brand}</DescriptionSubtitle>
                         {prices}
                         {attributes}
                     </ProductDescriptionBlock>
                     <ProductImgsBlock>
                         <Counter>
-                            <Change onClick={() => this.props.changeQty(product.id, 1)} isBig={this.props.isActiveCart}>+</Change>
-                            <Quantity isBig={this.props.isActiveCart}>{product.quantity}</Quantity>
-                            <Change onClick={() => this.props.changeQty(product.id, -1)} isBig={this.props.isActiveCart}>-</Change>
+                            <Change onClick={() => this.props.changeQty(product.id, 1)}>+</Change>
+                            <Quantity>{product.quantity}</Quantity>
+                            <Change onClick={() => this.props.changeQty(product.id, -1)}>-</Change>
                         </Counter>
                         <ImgWrapper>
-                            <PrevSlide onClick={() => this.props.changeSlide(product.id, -1)} isBig={this.props.isActiveCart}>{'<'}</PrevSlide>
+                            <PrevSlide onClick={() => this.props.changeSlide(product.id, -1)}>{'<'}</PrevSlide>
                             <span>
-                                <CartImg src={mainImg} isBig={this.props.isActiveCart}></CartImg>
+                                <img src={mainImg}></img>
                             </span>
-                            <NextSlide onClick={() => this.props.changeSlide(product.id, 1)} isBig={this.props.isActiveCart}>{'>'}</NextSlide>
+                            <NextSlide onClick={() => this.props.changeSlide(product.id, 1)}>{'>'}</NextSlide>
                         </ImgWrapper>
                     </ProductImgsBlock>
                 </ItemContent>
+            </ItemWrapper>
             )
         })
 
         return (
-            <ItemWrapper>
-                <Line></Line>
+            <div>
                 {content}
-            </ItemWrapper>
+            </div>
         )
     }
 }

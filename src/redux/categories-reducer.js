@@ -15,20 +15,40 @@ const CategoriesReducer = (state = initialState, action) => {
            
             return {
                 ...state, 
-                categoriesList: action.categoriesList.map((category) => {
+                categoriesList: action.categoriesList.map((category, i) => {
+                    if(i === 0) {
                         return {
                             ...category,
-                            id: category.name
+                            id: category.name,
+                            active: true
+                        }
+                    }
+                        return {
+                            ...category,
+                            id: category.name,
+                            active: false
                         }
                 }),
-                activeCategory: action.categoriesList[0].name 
             }
         }
 
         case CHANGE_ACTIVE_CATEGORY: {
             return {
                 ...state,
-                activeCategory: action.categoryId
+                categoriesList: [
+                    ...state.categoriesList.map(category => {
+                        if(category.id === action.categoryId) {
+                            return {
+                                ...category,
+                                active: true
+                            }
+                        }
+                        return {
+                            ...category,
+                            active: false
+                        }
+                    })
+                ],
             }
         }
 

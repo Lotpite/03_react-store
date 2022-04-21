@@ -8,8 +8,7 @@ let initialState = {
     productId: null, //rendered from ProductsListPage
     details: null,
     mainImg: null,
-    // activeAttribute: null,
-    // attributes: null
+    isActiveBig: true
 }
 
 const ProductReducer = (state = initialState, action) => {

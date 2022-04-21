@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 export const StyledCategory = styled.div `
-// position: absolute;
 display: flex;
-overflow: hidden;
+// overflow: hidden;
 flex-direction: column;
 margin-left: 100px;
 // width: 1440px;
 // height: 1533px;
+
+
 `
 export const H2 = styled.h2 `
 // padding-left: calc(50% - 299px/2 - 469.5px);
@@ -19,4 +20,13 @@ font-size: 42px;
 
 color: #1D1F22;
 text-transform: uppercase;
+`
+export const Hider = styled.div`
+    display: block;
+    position: absolute;
+    left: -0px;
+    width: 100%;
+    height: 220%;
+    background-color: #212121;
+    opacity: 70%;
 `

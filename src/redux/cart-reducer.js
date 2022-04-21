@@ -1,73 +1,74 @@
 const ADD_PRODUCT = 'ADD_PRODUCT',
     CHANGE_ITEMS_QTY = 'CHANGE_ITEMS_QTY',
     CHANGE_MAIN_IMG = 'CHANGE_MAIN_IMG',
-    TOGGLE_OVERLAY_ACTIVE = 'TOGGLE_OVERLAY_ACTIVE';
+    TOGGLE_OVERLAY_ACTIVE = 'TOGGLE_OVERLAY_ACTIVE',
+    TOGGLE_CART_ACTIVE = 'TOGGLE_CART_ACTIVE';
 
 let initialState = {
     productList: [],
-    activeCartOverlay: false
+    activeCartOverlay: false,
+    isActiveCart: false
 }
 
 const CartReducer = (state = initialState, action) => {
     switch(action.type) {
         case ADD_PRODUCT: {
             
-            return {
-                ...state,
-               productList: [
-                   ...state.productList,
-
-                   {
-                    ...action.productDetails,
-                    attributes: action.productDetails.attributes.map(attribute => {
-                        return {
-                            ...attribute,
-                            items: [
-                                attribute.items.filter(item => item.active === false),
-                                attribute.items.find(item => item.active === true)
-                                
-                                // ...attribute.items.map(item => {
-                                //     return {
-                                //         ...item,
-                                //         active: true,
-                                //     }
-                                // })
-                            ]
-                            // items: [
-                                
-                            //     // attribute.items.find(item => item.active === true),
-                            //     // attribute.items.find(item => item.active === false)
-                            // ]
-                        }
-                    }),
-                    quantity: 1,
-                    imgIndex: 0
-                    }
-               ]
-            }
-        }
-        case CHANGE_ITEMS_QTY: {
-            return {
-                ...state,
-                productList: [
-                    ...state.productList.map(product => {
-                        if (product.id === action.productId) {
-                            if (product.quantity + action.changeIndex < 1) {
+            if(state.productList.find(product => product.id === action.productDetails.id) == undefined) {
+                return {
+                    ...state,
+                   productList: [
+                       ...state.productList,
+                       {
+                        ...action.productDetails,
+                        attributes: action.productDetails.attributes.map(attribute => {
+                            if(attribute.items.find(item => item.active === true)) {
                                 return {
-                                    ...product,
-                                quantity: 1
+                                    ...attribute,
+                                    items: [
+                                        attribute.items.find(item => item.active === false),
+                                        attribute.items.find(item => item.active === true)
+                                    ]
                                 }
                             }
-                            return {
-                                ...product,
-                                quantity: product.quantity + action.changeIndex
+                            if(!attribute.items.find(item => item.active === true)) {
+                                return {
+                                    ...attribute,
+                                    items: [
+                                        {...attribute.items[0], active: true},
+                                        attribute.items[1]
+                                    ]
+                                }
                             }
+                        }),
+                        quantity: 1,
+                        imgIndex: 0
                         }
-                        return product
-                    })
-                ]
+                   ]
+                }
             }
         }
+
+
+        case CHANGE_ITEMS_QTY: 
+            {let products = state.productList.map(product => {
+                    if(product.id === action.productId) {
+                        return {
+                            ...product,
+                            quantity: product.quantity + action.changeIndex
+                        }
+                    }
+                    return product
+                })
+
+            
+                return {
+                    ...state,
+                    productList: [
+                        ...products.filter(product => product.quantity > 0)
+                    ]
+                }}
+    
         case CHANGE_MAIN_IMG: {
             return {
                 ...state,
@@ -99,10 +100,17 @@ const CartReducer = (state = initialState, action) => {
                 ]
             }
         }
+        
         case TOGGLE_OVERLAY_ACTIVE: {
             return {
                 ...state,
                 activeCartOverlay: action.isActive
+            }
+        }
+        case TOGGLE_CART_ACTIVE: {
+            return {
+                ...state,
+                isActiveCart: action.isActive
             }
         }
         
@@ -142,5 +150,53 @@ export const toggleOverlayActive = (isActive) => {
     }
 }
 
+export const toggleCartActive = (isActive) => {
+    return {
+        type: TOGGLE_CART_ACTIVE,
+        isActive
+    }
+}
+
+
 
 export default CartReducer;
+
+/*
+     case ADD_PRODUCT: 
+        let products;
+        
+        {
+            return {
+                ...state,
+               productList: [
+                   ...state.productList,
+
+                   {
+                    ...action.productDetails,
+                    attributes: action.productDetails.attributes.map(attribute => {
+                        if(attribute.items.find(item => item.active === true)) {
+                            return {
+                                ...attribute,
+                                items: [
+                                    attribute.items.find(item => item.active === false),
+                                    attribute.items.find(item => item.active === true)
+                                ]
+                            }
+                        }
+                        if(!attribute.items.find(item => item.active === true)) {
+                            return {
+                                ...attribute,
+                                items: [
+                                    {...attribute.items[0], active: true},
+                                    attribute.items[1]
+                                ]
+                            }
+                        }
+                    }),
+                    quantity: 1,
+                    imgIndex: 0
+                    }
+               ]
+            }
+        }
+*/

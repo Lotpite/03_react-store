@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CartOverlay from './CartOverlay';
-import { changeItemsQty, changeMainImg, toggleOverlayActive } from '../../redux/cart-reducer'
+import { changeItemsQty, changeMainImg, toggleOverlayActive, toggleCartActive } from '../../redux/cart-reducer'
 import { Spinner } from '../styles/Spinner.styled';
 
 class CartOverlayContainer extends Component {
@@ -11,25 +11,12 @@ class CartOverlayContainer extends Component {
     }
 
     changeSlide = (productId, changeType) => {
-        console.log(productId, changeType)
         this.props.changeMainImg(productId, changeType)
     }
 
-    // countSum = (productList) => {
-    //     return productList.map(product => {
-    //         product.prices.map(price => {
-    //             if (price.currency.label === this.props.currentCurrency.label) {
-    //                 return {
-    //                     ...price.amount
-    //                 }
-    //             }
-    //             return 'hello';
-    //         })
-    //     })
-    // }
-
     toggleActive = (isActive) => {
             this.props.toggleOverlayActive(!isActive)
+            this.props.toggleCartActive(isActive)
     }
 
 
@@ -38,24 +25,10 @@ class CartOverlayContainer extends Component {
             return <Spinner />
         }
 
-           let arr = this.props.productList.map(product => {
-              let amounts = product.prices.map(price => {
-                   if (price.currency.label === this.props.currentCurrency.label) {
-                       return price.amount
-                   }
-                   return 0;
-               })
-                let arrayOfAmounts = amounts.find(item => item > 0)
-                return arrayOfAmounts
-           })
-
-        // let arr = this.props.productList.map(product => {
-        //     let amounts = product.prices.find(price => price.currency.label === this.props.currentCurrency.label)
-        //       let arrayOfAmounts = amounts.find(item => item > 0)
-        //       return arrayOfAmounts
-        //  })
-
-        let totalCosts = arr.reduce((previosAmount, nextAmount) => previosAmount + nextAmount, 0)
+        let arr = this.props.productList.map(product => {
+            return product.prices.find(price => price.currency.label === this.props.currentCurrency.label).amount
+         })
+        let totalCosts = arr.reduce((previosAmount, nextAmount) => previosAmount + nextAmount, 0).toFixed(2)
 
         return (
                 <CartOverlay itemsQty={this.props.productList.length}
@@ -65,7 +38,8 @@ class CartOverlayContainer extends Component {
                 changeSlide={this.changeSlide}
                 totalCosts={totalCosts}
                 overlayActive={this.props.activeCartOverlay}
-                toggleActive={this.toggleActive}/>            
+                toggleActive={this.toggleActive}
+                isActiveCart={this.props.isActiveCart}/>            
         )
     }
 }
@@ -74,6 +48,7 @@ const mapStateToProps = (state) => {
     return {
         productList: state.cart.productList,
         activeCartOverlay: state.cart.activeCartOverlay,
+        isActiveCart: state.cart.isActiveCart,
         currentCurrency: state.currencies.activeCurrency
     }
 }
@@ -81,5 +56,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
     changeItemsQty,
     changeMainImg,
-    toggleOverlayActive
+    toggleOverlayActive,
+    toggleCartActive
 })(CartOverlayContainer);

@@ -30,7 +30,7 @@ export const CartSymbol = styled.span`
 
 export const ItemsQty = styled.span`
     position: absolute; 
-    left: -40%;
+    left: 10px;
     top: -60%;
     width: 20px;
     height: 20px;
@@ -41,7 +41,7 @@ export const ItemsQty = styled.span`
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
-    line-height: 19px;
+    line-height: 21px;
     align-items: center;
     text-align: center;
     text-transform: uppercase;

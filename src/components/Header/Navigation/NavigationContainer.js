@@ -17,7 +17,7 @@ class NavigationContainer extends Component {
         .getCategoriesList()
             .then(res => {
                 this.props.setCategories(res)
-                this.onCategoryChange(this.props.categories.activeCategory)
+                this.onCategoryChange(this.props.categories.categoriesList.find((category, i) => i === 0).name)
             })  
     }
           

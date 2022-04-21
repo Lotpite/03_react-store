@@ -1,6 +1,6 @@
 import ProductListPage from "./ProductsListPage";
 import React, { Component } from 'react';
-import { StyledCategory, H2 } from '../styles/Category.styled'
+import { StyledCategory, H2, Hider } from '../styles/Category.styled'
 import { Spinner } from "../styles/Spinner.styled";
 import { connect } from 'react-redux';
 import { isFetching } from "../../redux/products-reducer";
@@ -20,6 +20,7 @@ class ProductsListPageContainer extends Component {
 
         return (
             <StyledCategory>  
+                {/* <Hider></Hider> */}
                 <H2>{this.props.categories.activeCategory}</H2>
                 {this.props.products.isFetching ? <Spinner/>: <ProductListPage
                 products={this.props.products} 
