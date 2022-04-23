@@ -11,7 +11,7 @@ export default class extends Component {
 
         let categoriesList = this.props.categories.categoriesList.map(category => { 
             return (
-                    <StyledLink to={`categories/${category.id}`} 
+                    <StyledLink to={`/categories/${category.id}`} 
                     key={category.id} 
                     onClick={() => this.props.onCategoryChange(category.id)} 
                     >

@@ -46,7 +46,7 @@ class Cart extends Component {
             
 
             return (
-                 <ItemContent key={product.id}>
+                 <ItemContent key={product.id} isBig={this.props.isActiveCart}>
                     <ProductDescriptionBlock key={product.name} isBig={this.props.isActiveCart}>
                         <DescriptionTitle isBig={this.props.isActiveCart}>{product.name}</DescriptionTitle>
                         <DescriptionSubtitle isBig={this.props.isActiveCart}>{product.brand}</DescriptionSubtitle>

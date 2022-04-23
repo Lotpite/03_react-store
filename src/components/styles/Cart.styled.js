@@ -31,7 +31,7 @@ export const ItemContent = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between; 
-    margin-bottom: 20px;
+    margin-bottom: ${props => props.isBig ? "60px" : "20px"};
 
 `
 
@@ -39,7 +39,7 @@ export const ProductDescriptionBlock = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    // width: 292px;
+    height: ${props => props.isBig ? "186px" : ""};
     text-align: left;
     margin-bottom: 10px;
     margin-right: 50px;
@@ -96,7 +96,8 @@ export const ImgWrapper = styled.div`
 export const CartImg = styled.img`
     position: relative;
     // top: 30px;
-    width: ${props => props.isBig ? "241px" : "100px"};
+    width: ${props => props.isBig ? "141px" : "100px"};
+    height: ${props => props.isBig ? "185px" : ""};
     margin-bottom: 10px;
 `
 

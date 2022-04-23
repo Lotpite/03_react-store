@@ -1,13 +1,36 @@
 import ProductListPage from "./ProductsListPage";
+import ProductService from '../../services/ProductService';
 import React, { Component } from 'react';
 import { StyledCategory, H2, Hider } from '../styles/Category.styled'
 import { Spinner } from "../styles/Spinner.styled";
 import { connect } from 'react-redux';
-import { isFetching } from "../../redux/products-reducer";
+import { isFetching, setProducts} from "../../redux/products-reducer";
 import { setProductId } from "../../redux/product-reducer";
+import { withRouter } from "react-router-dom";
 
 
 class ProductsListPageContainer extends Component {
+
+    ProductSerivce = new ProductService();
+
+    componentDidMount() {
+        this.setProductsByCategoryId(this.props.match.params.categoryId)
+    }
+
+    componentDidUpdate(prevProps) {
+        if(this.props.match.params.categoryId !== prevProps.match.params.categoryId)
+        this.setProductsByCategoryId(this.props.match.params.categoryId)
+    }
+
+    setProductsByCategoryId = (categoryId) => {
+        this.ProductSerivce
+            .getProductsByCategoryName(categoryId)
+                .then(res => {
+                    // console.log(res)
+                    // this.props.changeActiveCategory(categoryId)
+                    this.props.setProducts(res)
+                })
+    }
 
     setProductId = (productId) => {
         this.props.setProductId(productId);
@@ -40,7 +63,9 @@ const mapStateToProps = (state) => {
     }
 }
 
+let WithRouterProductsListPageContainer = withRouter(ProductsListPageContainer)
 export default connect(mapStateToProps, {
     isFetching,
-    setProductId
-})(ProductsListPageContainer);
+    setProductId,
+    setProducts
+})(WithRouterProductsListPageContainer);

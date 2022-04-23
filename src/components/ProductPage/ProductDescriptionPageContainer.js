@@ -5,6 +5,7 @@ import { addProductToCart } from '../../redux/cart-reducer';
 import ProductService from '../../services/ProductService';
 import { Spinner } from '../styles/Spinner.styled';
 import ProductDescriptionPage from './ProductDescriptionPage';
+import { withRouter } from 'react-router-dom';
 
 
 class ProductDescriptionPageContainer extends Component {
@@ -12,13 +13,10 @@ class ProductDescriptionPageContainer extends Component {
     NewProduct = new ProductService();
 
     componentDidMount() {
-        
-        this.getProduct()
-
+        this.getProduct(this.props.match.params.productId)
     }
     
-    getProduct = (productId = this.props.product.productId) => {
-            
+    getProduct = (productId) => {
            this.NewProduct
             .getProductById(productId)
             .then(res => {
@@ -65,6 +63,8 @@ const mapStateToProps = (state) => {
     }
 }
 
+let WithRouterProductDescriptionPageContainer = withRouter(ProductDescriptionPageContainer)
+
 export default connect(mapStateToProps, {
     setProduct,
     setCurrency,
@@ -72,4 +72,4 @@ export default connect(mapStateToProps, {
     changeAttributeItem,
     addProductToCart
 })
-(ProductDescriptionPageContainer);
+(WithRouterProductDescriptionPageContainer);
