@@ -19,13 +19,12 @@ class App extends Component {
       }
     `
     return (
-      <AppContainer >
+      <AppContainer>
         <GlobalStyle/>
         <Header />
-          <Route path="/categories/:categoryId" render={() => <ProductsListPageContainer /> }/>
+          <Route path="/categories/:categoryId" render={() => <ProductsListPageContainer/> }/>
           <Route path="/products/:productId" render={() => <ProductDescriptionPageContainer /> } />
           <Route path="/cart" render={() => <CartContainer />} />
-
       </AppContainer>
     ) 
   }

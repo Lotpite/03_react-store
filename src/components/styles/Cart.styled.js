@@ -144,12 +144,13 @@ export const Line = styled.span`
 export const OverlayContainer = styled.div`
     display: ${props => props.active ? '' : 'none'};
     position: absolute;
+    top: 80px;
     width: 325px;
     left: 975px;
     // border-bottom: 2px solid;
     border-color: #black;
     background-color: #FFFFFF;
-    z-index: 1;
+    z-index: 3;
 `
 
 export const MyBagTitle = styled.p`
@@ -245,4 +246,16 @@ export const CheckoutButton = styled.button`
     :hover {
         cursor: pointer;
     }
+`
+export const Shade = styled.div`
+    display: ${props => props.active ? 'block': 'none'};
+    // border: 100px solid;
+    position: absolute;
+    top: 80px;
+    left: 100px;
+    right: 100px;
+    height: 220%;
+    background-color: #212121;
+    opacity: 70%;
+    z-index: 2;
 `

@@ -21,12 +21,3 @@ font-size: 42px;
 color: #1D1F22;
 text-transform: uppercase;
 `
-export const Hider = styled.div`
-    display: block;
-    position: absolute;
-    left: -0px;
-    width: 100%;
-    height: 220%;
-    background-color: #212121;
-    opacity: 70%;
-`

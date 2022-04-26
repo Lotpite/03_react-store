@@ -2,7 +2,7 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 import emptyCart from '../../assets/images/emptyCart.svg';
 import { CartSymbol, ItemsQty } from "../styles/Actions.styled";
-import { CartButtons, CheckoutButton, OverlayContainer, Total, TotalAmount, TotalTitle, ViewBagButton, MyBagTitle } from "../styles/Cart.styled";
+import { CartButtons, CheckoutButton, OverlayContainer, Total, TotalAmount, TotalTitle, ViewBagButton, MyBagTitle, Shade } from "../styles/Cart.styled";
 import { Spinner } from "../styles/Spinner.styled";
 import Cart from "./Cart";
 
@@ -39,6 +39,8 @@ export default class CartOverlay extends Component {
                         <CheckoutButton>check out</CheckoutButton>
                     </CartButtons>
                 </OverlayContainer>
+                <Shade active={this.props.overlayActive}
+                onClick={() => this.props.toggleActive(this.props.overlayActive)}></Shade>
             </div>
         )
     }
