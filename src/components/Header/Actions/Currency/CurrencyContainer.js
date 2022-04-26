@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import Currency from './Currency';
 import ProductService from '../../../../services/ProductService'
-import { connect } from 'react-redux';
 import { setCurrency, changeActiveCurrency, toggleDropdownActive } from '../../../../redux/currency-reducer'
 import { changePrice } from '../../../../redux/products-reducer';
+
 import { Spinner } from '../../../styles/Spinner.styled';
 
 class CurrencyContainer extends Component {

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+
+import { Link } from 'react-router-dom';
+
 import { CardItem, CardContainer, CartSpan, MainImg, OutStockLabel } from '../styles/ProductCard.styled'
 import { Spinner } from '../styles/Spinner.styled';
-import { Link } from 'react-router-dom';
 import greenCart from '../../assets/images/greenCart.png'
 
 class ProductsListPage extends Component {
     render() { 
-        // console.log(this.props.products.productsList)
         if (!this.props.products.productsList) {
             return <Spinner/>
         }

@@ -20,7 +20,7 @@ const CategoriesReducer = (state = initialState, action) => {
                         return {
                             ...category,
                             id: category.name,
-                            active: true
+                            active: false
                         }
                     }
                         return {

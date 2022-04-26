@@ -1,6 +1,6 @@
 import { Component } from "react";
-import { StyledNavigation, NavItem, activeNavITem, StyledLink, CategoryName } from "../../styles/Navigation.styled";
-import { Link } from "react-router-dom";
+
+import { StyledNavigation, StyledLink, CategoryName } from "../../styles/Navigation.styled";
 import { Spinner } from "../../styles/Spinner.styled";
 
 export default class extends Component {

@@ -1,5 +1,7 @@
 import { Component } from "react";
-import { CartSymbol, ItemsQty, StyledActions } from "../../styles/Actions.styled";
+
+import { StyledActions } from "../../styles/Actions.styled";
+
 import CurrencyContainer from "./Currency/CurrencyContainer";
 import CartOverlayContainer from "../../Cart/CartOverlayContainer";
 

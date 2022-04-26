@@ -1,12 +1,17 @@
-import ProductListPage from "./ProductsListPage";
-import ProductService from '../../services/ProductService';
 import React, { Component } from 'react';
+
+import { withRouter } from "react-router-dom";
+import { connect } from 'react-redux';
+
 import { StyledCategory, H2, Hider } from '../styles/Category.styled'
 import { Spinner } from "../styles/Spinner.styled";
-import { connect } from 'react-redux';
+
 import { isFetching, setProducts} from "../../redux/products-reducer";
 import { setProductId } from "../../redux/product-reducer";
-import { withRouter } from "react-router-dom";
+import ProductService from '../../services/ProductService';
+
+
+import ProductListPage from "./ProductsListPage";
 
 
 class ProductsListPageContainer extends Component {
@@ -15,9 +20,11 @@ class ProductsListPageContainer extends Component {
 
     componentDidMount() {
         this.setProductsByCategoryId(this.props.match.params.categoryId)
+        // this.props.changeActiveCategory(this.props.match.params.categoryId)
     }
 
     componentDidUpdate(prevProps) {
+
         if(this.props.match.params.categoryId !== prevProps.match.params.categoryId)
         this.setProductsByCategoryId(this.props.match.params.categoryId)
     }
@@ -26,8 +33,6 @@ class ProductsListPageContainer extends Component {
         this.ProductSerivce
             .getProductsByCategoryName(categoryId)
                 .then(res => {
-                    // console.log(res)
-                    // this.props.changeActiveCategory(categoryId)
                     this.props.setProducts(res)
                 })
     }
@@ -40,6 +45,7 @@ class ProductsListPageContainer extends Component {
         if (!this.props.products.productsList) {
             return <Spinner/>
         }
+
 
         return (
             <StyledCategory>  

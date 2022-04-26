@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
+import ProductDescriptionPage from './ProductDescriptionPage';
+
+import ProductService from '../../services/ProductService';
+
 import { setProduct, setCurrency, setMainImg, changeAttributeItem } from '../../redux/product-reducer';
 import { addProductToCart } from '../../redux/cart-reducer';
-import ProductService from '../../services/ProductService';
+
 import { Spinner } from '../styles/Spinner.styled';
-import ProductDescriptionPage from './ProductDescriptionPage';
-import { withRouter } from 'react-router-dom';
 
 
 class ProductDescriptionPageContainer extends Component {

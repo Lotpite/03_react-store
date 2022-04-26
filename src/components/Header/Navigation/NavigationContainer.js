@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
+import Navigation from "./Navigation";
+
 import ProductService from '../../../services/ProductService';
 import { Spinner } from "../../styles/Spinner.styled";
-import { connect } from 'react-redux';
 import { setCategories, changeActiveCategory, isFetching } from '../../../redux/categories-reducer';
 import { setProducts } from '../../../redux/products-reducer';
-import Navigation from "./Navigation";
-import { withRouter } from 'react-router-dom';
 
 
 class NavigationContainer extends Component {
@@ -13,12 +16,10 @@ class NavigationContainer extends Component {
     ProductSerivce = new ProductService();
 
     componentDidMount() {
-        // console.log(this.props)
         this.ProductSerivce
         .getCategoriesList()
             .then(res => {
                 this.props.setCategories(res)
-                // this.onCategoryChange(this.props.categories.categoriesList.find((category, i) => i === 0).name) // by default after refreshing page
             })  
     }
           
