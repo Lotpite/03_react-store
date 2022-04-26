@@ -5,12 +5,14 @@ export const StyledLink = styled(Link)`
     margin-right: 32px;
     text-decoration: none;
     text-transform: uppercase;
+    // height: 40px;
 
     align-items: center;
     text-align: center;
     :hover {
         cursor: pointer;
     }
+
 `
 
 export const CategoryName = styled.p`
@@ -19,6 +21,8 @@ export const CategoryName = styled.p`
     font-size: 16px;
     font-family: 'Raleway';
     font-style: normal;
+    height: 30px;
+    border-bottom: ${props => props.active === true ? '3px solid #5ECE7B' : ''};
 `
 
 export const StyledNavigation = styled.div `
@@ -37,6 +41,7 @@ export const NavItem = styled.div `
     :hover {
         cursor: pointer;
     }
+
 `
 
 export const activeNavITem = styled(NavItem)`
