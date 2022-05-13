@@ -235,7 +235,7 @@ export const Shade = styled.div`
     left: 100px;
     right: 100px;
     height: 220%;
-    background-color: #212121;
-    opacity: 70%;
+    background-color: #393748;
+    background: rgba(57, 55, 72, 0.22);
     z-index: 2;
 `
