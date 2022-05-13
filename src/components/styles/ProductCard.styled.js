@@ -1,12 +1,10 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.div `
-
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
-    margin-left: 20px;
 `
 
 export const CartSpan = styled.span`
@@ -34,7 +32,7 @@ export const CardItem = styled.div `
     width: 300px;
     height: 444px;
     margin-top: 100px;
-    margin-right: 40px;
+    margin-right: 120px;
     padding: 16px;
     text-align: left;
     opacity: ${props => props.inStock ? 1 : 0.5};

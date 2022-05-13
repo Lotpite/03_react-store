@@ -30,7 +30,6 @@ class ProductsListPage extends Component {
                         <img src={greenCart} alt="addToCart"/>
                     </CartSpan>
                     <OutStockLabel inStock={product.inStock}>OUT OF STOCK</OutStockLabel>   
-                    
                 </CardItem>
             )
         })
