@@ -13,25 +13,24 @@ class ProductsListPage extends Component {
         }
 
         let productsList = this.props.products.productsList.map(product => {
-            //get price according to currentCurrency
-            let details = product.prices.map(price => {
-                if(price.currency.label === this.props.currentCurrency.label) {
-                    return (
-                        <p key={price.currency.label}>{price.currency.symbol}{price.amount}</p>
-                    )
-                }
-            })
+            let details = product.prices.filter(item => item.currency.label === this.props.currentCurrency.label).map(price => {
+                return (
+                    <p key={price.currency.label}>{price.currency.symbol}{price.amount}</p>
+                )
+            }) 
+            
             return (
                 <CardItem key={product.id} inStock={product.inStock}>
-                    <MainImg src={product.gallery[0]} alt="" />
-                    <Link to={`/products/${product.id}`} onClick={()=> this.props.setProductId(product.id)}>
-                        <CartSpan>
-                            <img src={greenCart} alt="addToCart"/>
-                        </CartSpan>
+                    <Link to={`/products/${product.id}`} onClick={()=> this.props.setProductId(product.id)}> 
+                        <MainImg src={product.gallery[0]} alt="" /> 
                     </Link>
                     <h3>{product.name}</h3>
-                        {details}
+                            {details}
+                    <CartSpan onClick={() => product.inStock ? this.props.addToCart(product) : alert('Product is OUT OF STOCK')} >
+                        <img src={greenCart} alt="addToCart"/>
+                    </CartSpan>
                     <OutStockLabel inStock={product.inStock}>OUT OF STOCK</OutStockLabel>   
+                    
                 </CardItem>
             )
         })

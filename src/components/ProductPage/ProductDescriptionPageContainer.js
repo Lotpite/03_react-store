@@ -39,7 +39,6 @@ class ProductDescriptionPageContainer extends Component {
 
         addToCart = (productDetails) => {
             this.props.addProductToCart(productDetails)
-            // console.log(productDetails)
         }
 
     render() { 

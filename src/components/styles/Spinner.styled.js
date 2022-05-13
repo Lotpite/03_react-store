@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Spinner = styled.span`
-    // background-color: #1DCF65;
     display: inline-block;
     border-radius: 50%;
     width: 100px;
@@ -18,5 +17,4 @@ export const Spinner = styled.span`
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
-    
 `

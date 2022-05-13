@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 
-import { ProductPageWrapper, ProductImgsList, ProductMainImg, ProductDescriptionBlock, DescriptionTitle, DescriptionSubtitle, AttributesBlock, AttributeTitle, AttributesWrapper, AttributeItem, ActiveAttributeItem, StyledButton, Description, PriceBlock, PriceTitle, PriceAmount } from '../styles/ProductPage.styled';
+import { ProductPageWrapper, ProductImgsList, ProductMainImg, ProductDescriptionBlock, DescriptionTitle, DescriptionSubtitle, AttributesBlock, AttributeTitle, AttributesWrapper, AttributeItem, StyledButton, Description, PriceBlock, PriceTitle, PriceAmount } from '../styles/ProductPage.styled';
 import { Spinner } from '../styles/Spinner.styled';
 
 class ProductDescriptionPage extends Component {
 
     render() { 
-        // check if product props are not empty
+
         if(!this.props.product.details) {
            return <Spinner/>  
         }
-        //create IMG list in sidebar of ProductDescriptionPage
+        
         let imgList = this.props.product.details.gallery.map(img => {
-            // debugger
             return (
                 <span key={img}>
                     <img src={img} alt={this.props.product.details.brand} onClick={() => this.props.changeImg(img)}/>
@@ -20,10 +19,7 @@ class ProductDescriptionPage extends Component {
             )
         })
 
-
-        // Get attributes
         let attributes = this.props.product.details.attributes.map(type => {
-           // getType of attribute
            let title = (
                 <AttributeTitle key={type.id}
                     isBig={this.props.isBig}>
@@ -31,10 +27,8 @@ class ProductDescriptionPage extends Component {
                 </AttributeTitle>
             )       
            
-           // getAttributeItems (is not working while using in-line expression)
            let items = type.items.map(item => {       
-            //  let NewAttributeItem = item.id === this.props.product.activeAttribute ? ActiveAttributeItem : AttributeItem  // active ch
-            //  debugger
+          
                return (
                     <AttributeItem key={item.id}
                         active={item.active} 
@@ -42,7 +36,7 @@ class ProductDescriptionPage extends Component {
                         isBig={this.props.isBig}>
                         {item.displayValue}
                     </AttributeItem>)}) 
-            // return main Attributes block
+
            return (
                <AttributesBlock key={type.id}>
                    {title}
@@ -52,26 +46,21 @@ class ProductDescriptionPage extends Component {
                </AttributesBlock>
            )
         })
-       
 
-        //Get Price
-         let price = this.props.product.details.prices.map(item => {
-            if(item.currency.label === this.props.currentCurrency.label) {
-                return (
-                    <PriceBlock key={item.currency.label}>
-                        <PriceTitle isBig={this.props.isBig}>
-                            Price
-                        </PriceTitle>
-                        <PriceAmount isBig={this.props.isBig}>
-                            <span>{item.currency.symbol}</span>
-                            <span>{item.amount}</span>
-                        </PriceAmount>
-                    </PriceBlock>
-                )
-            }
+         let price = this.props.product.details.prices.filter(item => (item.currency.label === this.props.currentCurrency.label)).map(item => {
+            return (
+                <PriceBlock key={item.currency.label}>
+                    <PriceTitle isBig={this.props.isBig}>
+                        Price
+                    </PriceTitle>
+                    <PriceAmount isBig={this.props.isBig}>
+                        <span>{item.currency.symbol}</span>
+                        <span>{item.amount}</span>
+                    </PriceAmount>
+                </PriceBlock>
+            )
          })
          
-        //main return
         return ( 
             <ProductPageWrapper>
                 <ProductImgsList>
@@ -85,8 +74,9 @@ class ProductDescriptionPage extends Component {
                     <DescriptionSubtitle isBig={this.props.isBig}>{this.props.product.details.brand}</DescriptionSubtitle>
                     {attributes}
                     {price}
-                    <StyledButton onClick={() => this.props.addToCart(this.props.product.details)}>Add to cart</StyledButton>
-                    <Description dangerouslySetInnerHTML={{__html: this.props.product.details.description}}>
+                    <StyledButton onClick={() => this.props.addToCart(this.props.product.details)} disabled={this.props.product.details.inStock ? false : true}>Add to cart</StyledButton>
+                    <Description > 
+                        {this.props.product.details.description.replace(/<\/li>/gi, ". ").replace(/<\/?[^>]+(>|$)/gi, "")}
                     </Description>
                 </ProductDescriptionBlock>
             </ProductPageWrapper>

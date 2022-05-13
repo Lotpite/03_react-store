@@ -22,20 +22,17 @@ export const CurrencyMenu = styled.div`
         color: #1DCF65;
     }
 
-
 `
 
 export const DropdownMenu = styled.div`
+    display: ${(props) => props.active ? "Flex" : "none"};
+    flex-direction: column;
     position: absolute;
     top: 52px;
     left: 1180px;
-    display: ${(props) => props.active ? "flex" : "none"};
-    z-index: ${(props) => props.active ? "1 " : "0"};
-    flex-direction: column;
-    // justify-content: space-between;
-
     box-shadow: 0 0.5em 3rem -1rem rgba(0,0,0,0.5);
 `
+
 
 export const DropdownItem = styled.span`
     margin: 20px 40px 0 20px;
@@ -44,5 +41,4 @@ export const DropdownItem = styled.span`
             cursor: pointer;
             color: #1DCF65;
         }
-        
 `

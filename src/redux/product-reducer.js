@@ -5,7 +5,7 @@ const SET_PRODUCT = 'SET_PRODUCT',
      CHANGE_ATTRIBUTE_ITEM = 'CHANGE_ATTRIBUTE_ITEM';
 
 let initialState = {
-    productId: null, //rendered from ProductsListPage
+    productId: null,
     details: null,
     mainImg: null,
     isActiveBig: true

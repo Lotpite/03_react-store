@@ -9,9 +9,6 @@ export default class Actions extends Component {
     render () {
         return (
             <StyledActions>
-                {/* <span>
-                    <CurrencyContainer />
-                </span> */}
                     <CurrencyContainer />
                 <CartOverlayContainer />
                 

@@ -10,7 +10,6 @@ import { AppContainer } from './components/styles/App.styled';
 class App extends Component {
 
   render () {
-    // default Styles Reset
     const GlobalStyle = createGlobalStyle`
       * {
         box-sizing: border-box;

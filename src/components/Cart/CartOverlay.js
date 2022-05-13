@@ -16,18 +16,19 @@ export default class CartOverlay extends Component {
             <div>
                 <CartSymbol onClick={() => this.props.toggleActive(this.props.overlayActive)}>
                     <img src={emptyCart} alt="cart" />   
-                    <ItemsQty>{this.props.itemsQty}</ItemsQty> 
+                    <ItemsQty>{this.props.itemsQty == null ? "0" : this.props.itemsQty}</ItemsQty> 
                 </CartSymbol>
                 
                 <OverlayContainer active={this.props.overlayActive}>
                     <MyBagTitle>
-                        My Bag, {this.props.itemsQty} {this.props.itemsQty > 1 ? 'items' : 'item'}
+                        My Bag, {this.props.itemsQty == null ? "0" : this.props.itemsQty} {this.props.itemsQty > 1 ? 'items' : 'item'}
                     </MyBagTitle>
                     
                     <Cart productList={this.props.productList}
                         currentCurrency={this.props.currentCurrency}
                         changeQty={this.props.changeQty} 
-                        changeSlide={this.props.changeSlide}/>
+                        changeSlide={this.props.changeSlide}
+                        changeActiveAttributeItemCart={this.props.changeActiveAttributeItemCart}/>
                     <Total>
                         <TotalTitle>Total:</TotalTitle>
                         <TotalAmount>{this.props.currentCurrency != null ? this.props.currentCurrency.symbol : '$'}{this.props.totalCosts}</TotalAmount>

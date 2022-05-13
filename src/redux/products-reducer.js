@@ -5,7 +5,6 @@ const SET_PRODUCTS = 'SET_PRODUCTS',
 let initialState = {
     productsList: null,
     isFetching: false
-    // currentCurrency: null
 }
 
 const ProductsReducer = (state = initialState, action) => {
@@ -33,8 +32,6 @@ const ProductsReducer = (state = initialState, action) => {
     }
 }
 
-
-// export const setCategories = (categories) => ({type: SET_CATEGORIES, categories})
 export const setProducts = (productsList) => ({type: SET_PRODUCTS, productsList})
 export const isFetching = (isFetching) => ({type: CHECK_FETCHING, isFetching})
 export const changePrice = (currentCurrency) => ({type: CHANGE_CURRENT_CURRENCY, currentCurrency})

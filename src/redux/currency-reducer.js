@@ -26,7 +26,7 @@ const CurrencyReducer = (state = initialState, action) => {
         case TOGGLE_DROPDOWN_ACTIVE: {
                 return {
                     ...state,
-                    activeDropdownMenu: action.isActive ? false : true
+                    activeDropdownMenu: action.isActive
                 }
         }
 

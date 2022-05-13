@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Currency from './Currency';
 import ProductService from '../../../../services/ProductService'
 import { setCurrency, changeActiveCurrency, toggleDropdownActive } from '../../../../redux/currency-reducer'
+import { toggleOverlayActive } from '../../../../redux/cart-reducer';
 import { changePrice } from '../../../../redux/products-reducer';
 
 import { Spinner } from '../../../styles/Spinner.styled';
@@ -23,7 +24,8 @@ class CurrencyContainer extends Component {
     }
 
     onToggleDropdownActive = (isActive) => {
-        isActive ? this.props.toggleDropdownActive(false) : this.props.toggleDropdownActive(true)
+        this.props.toggleDropdownActive(isActive)
+        this.props.toggleOverlayActive(false)
     }
 
     changeCurrency = (currency) => {
@@ -60,6 +62,7 @@ export default connect(mapStateToProps,
     setCurrency,
     changeActiveCurrency,
     toggleDropdownActive,
-    changePrice
+    changePrice,
+    toggleOverlayActive
     })
     (CurrencyContainer);

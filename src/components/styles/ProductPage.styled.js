@@ -12,8 +12,6 @@ export const ProductImgsList = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    // width: 100px;
-    // border: 2px solid;
     tex: center;
 
     img {
@@ -28,11 +26,9 @@ export const ProductImgsList = styled.div`
 
 export const ProductMainImg = styled.div`
     margin-left: 40px;
-    // border: 2px solid;
     width: 610px;
-
     img {
-        width: 600px;
+        width: 500px;
     }
 `
 
@@ -40,7 +36,6 @@ export const ProductDescriptionBlock = styled.div`
     display: flex;
     flex-direction: column;
     margin-left: 100px;
-    // width: 292px;
     text-align: left;
 `
 export const DescriptionTitle = styled.p`
@@ -65,7 +60,6 @@ export const AttributesBlock = styled.div`
     margin-top: 5px; //20
     display: flex;
     flex-direction: column;
-    // justify-conent: space-between;
 `
 
 export const AttributeTitle = styled.p`
@@ -82,7 +76,6 @@ export const AttributeTitle = styled.p`
 export const AttributesWrapper = styled.div`
     display: flex;
     flex-direction: row;
-    // justify-conent: space-between;
     justify-content: left;    
 `
 
@@ -93,12 +86,10 @@ export const AttributeItem = styled.span`
     height: ${props => props.isBig ? '45px' : '35px'};
     text-align: center;
     align-items: center;
-    border: 1px solid; // 2
+    border: 1px solid; 
     background: ${props => props.active ? '#292929' : '#FFFFFF'};
     color: ${props => props.active ? '#FFFFFF' : '#292929'};
-    // padding-left: 1px;
-    margin-right: 5px; //10
-    
+    margin-right: 5px; 
     font-family: 'Source Sans Pro';
     font-style: normal;
     font-weight: 400;
@@ -158,18 +149,13 @@ export const PriceTitle = styled.p`
 `
 export const PriceAmount = styled.div`
     margin-top: 20px;
-    // margin-left: 0px;;
     display: flex;
-    flex-direction: row;
-    // justify-content: space-between;
-    
-
+    flex-direction: row;  
     font-family: 'Raleway';
     font-style: normal;
-    font-weight: ${props => props.isBig ? '700' : '500'};
+    font-weight: ${props => props.isBig ? '700' : '700'};
     font-size: ${props => props.isBig ? '24px' : '16px'};
     line-height: 18px;
     align-items: center;
-
     color: #1D1F22;
 `

@@ -2,10 +2,12 @@ const ADD_PRODUCT = 'ADD_PRODUCT',
     CHANGE_ITEMS_QTY = 'CHANGE_ITEMS_QTY',
     CHANGE_MAIN_IMG = 'CHANGE_MAIN_IMG',
     TOGGLE_OVERLAY_ACTIVE = 'TOGGLE_OVERLAY_ACTIVE',
-    TOGGLE_CART_ACTIVE = 'TOGGLE_CART_ACTIVE';
+    TOGGLE_CART_ACTIVE = 'TOGGLE_CART_ACTIVE',
+    CHANGE_ATTRIBUTE_ITEM_CART = 'CHANGE_ATTRIBUTE_ITEM_CART';
 
 let initialState = {
     productList: [],
+    totalItems: null,
     activeCartOverlay: false,
     isActiveCart: false
 }
@@ -13,8 +15,6 @@ let initialState = {
 const CartReducer = (state = initialState, action) => {
     switch(action.type) {
         case ADD_PRODUCT: {
-            
-            if(state.productList.find(product => product.id === action.productDetails.id) == undefined) {
                 return {
                     ...state,
                    productList: [
@@ -40,22 +40,23 @@ const CartReducer = (state = initialState, action) => {
                                     ]
                                 }
                             }
+                            return attribute
                         }),
                         quantity: 1,
-                        imgIndex: 0
+                        imgIndex: 0,
+                        other_id: Math.floor(Math.random() * 1000)
                         }
-                   ]
+                   ],
+                   totalItems: state.totalItems + 1
                 }
-            }
         }
-
 
         case CHANGE_ITEMS_QTY: 
             {let products = state.productList.map(product => {
-                    if(product.id === action.productId) {
+                    if(product.other_id === action.productId) {
                         return {
                             ...product,
-                            quantity: product.quantity + action.changeIndex
+                            quantity: product.quantity + action.changeIndex,
                         }
                     }
                     return product
@@ -66,7 +67,8 @@ const CartReducer = (state = initialState, action) => {
                     ...state,
                     productList: [
                         ...products.filter(product => product.quantity > 0)
-                    ]
+                    ],
+                    totalItems: state.totalItems + action.changeIndex
                 }}
     
         case CHANGE_MAIN_IMG: {
@@ -74,7 +76,8 @@ const CartReducer = (state = initialState, action) => {
                 ...state,
                 productList: [
                     ...state.productList.map(product => {
-                        if(product.id === action.productId) {
+                        if(product.other_id === action.productId) {
+                            debugger
                             if(product.imgIndex + action.changeIndex > product.gallery.length - 1) {
                                 return {
                                     ...product,
@@ -111,6 +114,43 @@ const CartReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isActiveCart: action.isActive
+            }
+        }
+
+        case CHANGE_ATTRIBUTE_ITEM_CART: {
+            return {
+                ...state,
+                productList: [
+                    ...state.productList.map(product => {
+                        if(product.other_id === action.productId) {
+                            return {
+                                ...product,
+                                attributes: [...product.attributes.map(attribute => {
+                                    if(attribute.id === action.attributeId) {
+                                        return {
+                                            ...attribute,
+                                            items: [...attribute.items.map(item => {
+                                                if(item.id === action.itemId) {
+                                                    return {
+                                                        ...item, 
+                                                        active: true,
+                                                    }
+                                                }
+                                                return {
+                                                    ...item,
+                                                    active: false
+                                                }
+                                            })]
+                                        }
+                                    }
+                                    return attribute
+                                })
+                            ]}
+                        }
+
+                        return product
+                    })
+                ]
             }
         }
         
@@ -157,46 +197,14 @@ export const toggleCartActive = (isActive) => {
     }
 }
 
+export const changeAttributeItemCart = (productId, attributeId, itemId) => {
+    return {
+        type: CHANGE_ATTRIBUTE_ITEM_CART,
+        productId,
+        attributeId,
+        itemId
+    }
+}
 
 
 export default CartReducer;
-
-/*
-     case ADD_PRODUCT: 
-        let products;
-        
-        {
-            return {
-                ...state,
-               productList: [
-                   ...state.productList,
-
-                   {
-                    ...action.productDetails,
-                    attributes: action.productDetails.attributes.map(attribute => {
-                        if(attribute.items.find(item => item.active === true)) {
-                            return {
-                                ...attribute,
-                                items: [
-                                    attribute.items.find(item => item.active === false),
-                                    attribute.items.find(item => item.active === true)
-                                ]
-                            }
-                        }
-                        if(!attribute.items.find(item => item.active === true)) {
-                            return {
-                                ...attribute,
-                                items: [
-                                    {...attribute.items[0], active: true},
-                                    attribute.items[1]
-                                ]
-                            }
-                        }
-                    }),
-                    quantity: 1,
-                    imgIndex: 0
-                    }
-               ]
-            }
-        }
-*/

@@ -21,10 +21,21 @@ class ProductService extends Component {
         query getProductsByCategoryName($title: String!) {
             category (input: {title: $title}) {
                 products {
-                    name,
                     id,
+                    name,
+                    gallery,
+                    description,
                     inStock,
-                    gallery
+                    brand
+                    attributes {
+                        id,
+                        name,
+                        items {
+                            displayValue,
+                            value,
+                            id
+                        }
+                    }
                     prices {
                         currency {
                             label,

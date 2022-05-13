@@ -5,8 +5,6 @@ export const StyledLink = styled(Link)`
     margin-right: 32px;
     text-decoration: none;
     text-transform: uppercase;
-    // height: 40px;
-
     align-items: center;
     text-align: center;
     :hover {

@@ -14,6 +14,6 @@ let reducers = combineReducers({
 });
 
 
-let store = createStore(reducers); // please, check if switch in reducers return state by default :-)
+let store = createStore(reducers); 
 
 export default store;

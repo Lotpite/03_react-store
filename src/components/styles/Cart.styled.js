@@ -5,16 +5,13 @@ width: 84px;
 height: 40px;
 left: 100px;
 top: 160px;
-
+margin-bottom: 20px;
 font-family: 'Raleway';
 font-style: normal;
 font-weight: 700;
 font-size: 32px;
 line-height: 40px;
-/* identical to box height, or 125% */
-
 text-transform: uppercase;
-
 color: #1D1F22;
 `
 
@@ -22,42 +19,40 @@ export const ItemWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-left: 10px;
     margin-right: 15px;
-    // width: 1100px;
+    height: ${props => props.isBig ? "550px" : "200px"};
+    overflow-x: hidden;
 `
 
 export const ItemContent = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between; 
-    margin-bottom: ${props => props.isBig ? "60px" : "20px"};
-
+    align-items: stretch;
+    margin-top: ${props => props.isBig ? "20px" : "20px"};
+    margin-bottom: ${props => props.isBig ? "20px" : "20px"};
+    border-top: ${props => props.isBig ? "1px solid #E5E5E5" : ""};
+    padding-top: ${props => props.isBig ? "20px" : "0px"};
+    padding-right: ${props => props.isBig ? "20px" : "0px"};
 `
 
 export const ProductDescriptionBlock = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: ${props => props.isBig ? "186px" : ""};
+    margin-left: ${props => props.isBig ? "0" : "10px"};
     text-align: left;
-    margin-bottom: 10px;
-    margin-right: 50px;
 `
 
 export const ProductImgsBlock = styled.div`
     display: flex;
     flex-direction: row;
-    // width: 292px;
-    // heigh: 185px;
+    margin-left: ${props => props.isBig ? "0" : "40px"};
 `
 export const Counter = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
-    margin-bottom: 10px;
-
 `
 
 export const Change = styled.span`
@@ -66,7 +61,6 @@ export const Change = styled.span`
     height: ${props => props.isBig ? "45px" : "22px"};
     border: 2px solid;
     font-size: ${props => props.isBig ? "24px" : "16px"};
-    // padding-bottom: 12px;
     line-height: ${props => props.isBig ? "35px" : "14px"};
     justify-content: space-around; 
     text-align: center;
@@ -90,15 +84,14 @@ export const Quantity = styled.span`
 export const ImgWrapper = styled.div`
     position: relative;
     display: flex;
+    align-items: center;
     margin-left: 20px;  
 `
 
 export const CartImg = styled.img`
     position: relative;
-    // top: 30px;
     width: ${props => props.isBig ? "141px" : "100px"};
     height: ${props => props.isBig ? "185px" : ""};
-    margin-bottom: 10px;
 `
 
 export const PrevSlide = styled.span`
@@ -106,7 +99,7 @@ export const PrevSlide = styled.span`
     font-weight: 500;
     font-size: 24px;
     color: #5ECE7B;
-    top: 42%;
+    top: 49%;
     left: 0;
     z-index: 1;
     :hover {
@@ -121,7 +114,7 @@ export const NextSlide = styled.span`
     font-weight: 500;
     font-size: 24px;
     color: #5ECE7B;
-    top: 42%;
+    top: 49%;
     z-index: 1;
     right: 0;
     :hover {
@@ -132,22 +125,18 @@ export const NextSlide = styled.span`
 `
 
 export const Line = styled.span`
+    display: ${props => props.isBig ? "block" : "none"};
     margin: 20px 0 20px 0;
-    // border-bottom: 2px solid;
-    border-color: #E5E5E5;
+    border: 1px solid #E5E5E5;
     heigh: 10px;
     width: 100%;
     
 `
-// Cart Overlay
-
 export const OverlayContainer = styled.div`
     display: ${props => props.active ? '' : 'none'};
     position: absolute;
     top: 80px;
-    width: 325px;
     left: 975px;
-    // border-bottom: 2px solid;
     border-color: #black;
     background-color: #FFFFFF;
     z-index: 3;
@@ -160,10 +149,7 @@ export const MyBagTitle = styled.p`
     font-weight: 700;
     font-size: 16px;
     line-height: 160%;
-    /* identical to box height, or 26px */
-
     text-align: left;
-
     color: #1D1F22;
 `
 
@@ -177,7 +163,7 @@ export const Total = styled.div`
 export const TotalTitle = styled.p`
     font-family: 'Roboto';
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 16px;
     line-height: 18px;
     color: #1D1F22;
@@ -201,14 +187,11 @@ export const CartButtons = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    // margin-bottom: 20px;
     padding: 0 10px 20px 10px;
 `
 
 export const ViewBagButton = styled.button`
     width: 140px;
-    // width: 45%;
-
     height: 43px;
     border: 1px solid;
 
@@ -228,8 +211,6 @@ export const ViewBagButton = styled.button`
 export const CheckoutButton = styled.button`
     height: 43px;
     width: 140px;
-    // width: 45%;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -249,7 +230,6 @@ export const CheckoutButton = styled.button`
 `
 export const Shade = styled.div`
     display: ${props => props.active ? 'block': 'none'};
-    // border: 100px solid;
     position: absolute;
     top: 80px;
     left: 100px;

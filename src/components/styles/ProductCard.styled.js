@@ -30,11 +30,9 @@ export const OutStockLabel = styled.span`
 
 export const CardItem = styled.div `
     position: relative;
-    // display: disabled;
     flex: 0 33%
     width: 300px;
     height: 444px;
-    // border: 2px solid;
     margin-top: 100px;
     margin-right: 40px;
     padding: 16px;
