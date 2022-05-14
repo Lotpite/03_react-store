@@ -86,8 +86,15 @@ export const AttributeItem = styled.span`
     height: ${props => props.isBig ? '45px' : '35px'};
     text-align: center;
     align-items: center;
-    border: 1px solid; 
-    background: ${props => props.active ? '#292929' : '#FFFFFF'};
+    border: 0.15rem solid; 
+    background: ${props => {
+        if(props.color) {
+            return props.color
+        }
+           return props.active ? '#292929' : '#FFFFFF';
+    }};
+
+    // background: ${props => props.active ? '#292929' : '#FFFFFF'};    
     color: ${props => props.active ? '#FFFFFF' : '#292929'};
     margin-right: 5px; 
     font-family: 'Source Sans Pro';
@@ -101,6 +108,7 @@ export const AttributeItem = styled.span`
 `
 export const ActiveAttributeItem = styled(AttributeItem)`
     background: black;
+    // border: 1px solid; 
     color: #FFFFFF;
 `
 

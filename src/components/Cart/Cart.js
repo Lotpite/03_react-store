@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ItemContent, ItemWrapper, ProductImgsBlock, ProductDescriptionBlock, Counter, Change, ImgWrapper, PrevSlide, NextSlide, Quantity, CartImg, CartImgDiv } from '../styles/Cart.styled';
+import { ItemContent, ItemWrapper, ProductImgsBlock, ProductDescriptionBlock, Counter, Change, ImgWrapper, PrevSlide, NextSlide, Quantity, CartImg} from '../styles/Cart.styled';
 import { AttributeItem, AttributesBlock, AttributesWrapper, AttributeTitle, DescriptionSubtitle, DescriptionTitle, PriceAmount } from '../styles/ProductPage.styled';
 import { Spinner } from '../styles/Spinner.styled';
 
@@ -13,13 +13,13 @@ class Cart extends Component {
             let mainImg = product.gallery[product.imgIndex]
             let attributes = product.attributes.map(attribute => {
                 let attributeItems = attribute.items.map(item => {
-
                     return (
                         <AttributeItem key={item.id}
                          active={item.active}
                          isBig={this.props.isActiveCart}
-                         onClick={() => this.props.changeActiveAttributeItemCart(product.other_id, attribute.id, item.id)}>
-                            <p>{item.displayValue}</p>
+                         onClick={() => this.props.changeActiveAttributeItemCart(product.other_id, attribute.id, item.id)}
+                         color={attribute.name === "Color" ? item.displayValue : false}>
+                            {attribute.name === "Color" ? '' : item.displayValue}
                         </AttributeItem>
                     )
                 })

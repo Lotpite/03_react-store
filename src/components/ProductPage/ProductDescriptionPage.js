@@ -33,8 +33,9 @@ class ProductDescriptionPage extends Component {
                     <AttributeItem key={item.id}
                         active={item.active} 
                         onClick={() => this.props.changeActiveAttribute(type.id, item.id)}
-                        isBig={this.props.isBig}>
-                        {item.displayValue}
+                        isBig={this.props.isBig}
+                        color={type.name === "Color" ? item.displayValue : false}>
+                        {type.name === "Color" ? '' : item.displayValue}
                     </AttributeItem>)}) 
 
            return (
