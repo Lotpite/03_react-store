@@ -77,7 +77,6 @@ const CartReducer = (state = initialState, action) => {
                 productList: [
                     ...state.productList.map(product => {
                         if(product.other_id === action.productId) {
-                            debugger
                             if(product.imgIndex + action.changeIndex > product.gallery.length - 1) {
                                 return {
                                     ...product,
