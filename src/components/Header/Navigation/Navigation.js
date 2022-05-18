@@ -3,7 +3,7 @@ import { Component } from "react";
 import { StyledNavigation, StyledLink, CategoryName } from "../../styles/Navigation.styled";
 import { Spinner } from "../../styles/Spinner.styled";
 
-export default class extends Component {
+export default class Navigation extends Component {
     render () {
         if(!this.props.categories.categoriesList) {
             return <Spinner/>

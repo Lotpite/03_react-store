@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Currency from './Currency';
 import ProductService from '../../../../services/ProductService'
-import { setCurrency, changeActiveCurrency, toggleDropdownActive } from '../../../../redux/currency-reducer'
+import { setCurrency, changeActiveCurrency, toggleDropdownActive, getCurrency } from '../../../../redux/currency-reducer'
 import { toggleOverlayActive } from '../../../../redux/cart-reducer';
 import { changePrice } from '../../../../redux/products-reducer';
 
@@ -14,13 +14,7 @@ class CurrencyContainer extends Component {
      CurrencyService = new ProductService();
 
     componentDidMount() {
-
-        this.CurrencyService
-            .getCurrenciesList()
-                .then(currenciesList => {
-                    this.props.setCurrency(currenciesList)
-                    this.changeCurrency(currenciesList[0])
-                })
+        this.props.getCurrency();
     }
 
     onToggleDropdownActive = (isActive) => {
@@ -63,6 +57,7 @@ export default connect(mapStateToProps,
     changeActiveCurrency,
     toggleDropdownActive,
     changePrice,
-    toggleOverlayActive
+    toggleOverlayActive,
+    getCurrency
     })
     (CurrencyContainer);

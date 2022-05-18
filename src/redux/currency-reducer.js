@@ -1,6 +1,12 @@
+import ProductService from "../services/ProductService";
+import { changePrice } from "./products-reducer";
+
 const SET_CURRENCY = 'SET_CURRENCY',
     CHANGE_ACTIVE_CURRENCY = 'CHANGE_ACTIVE_CURRENCY',
     TOGGLE_DROPDOWN_ACTIVE = 'TOGGLE_DROPDOWN_ACTIVE';
+
+const CurrencyService = new ProductService();
+
 
 let initialState = {
     currenciesList: null,
@@ -55,6 +61,17 @@ export const toggleDropdownActive = (isActive) => {
         type: TOGGLE_DROPDOWN_ACTIVE,
         isActive
     })
+}
+
+export const getCurrency = () => {
+    return (dispatch) => {
+        CurrencyService.getCurrenciesList()
+                .then(currenciesList => {
+                    dispatch(setCurrency(currenciesList))
+                    dispatch(changeActiveCurrency(currenciesList[0]))
+                    dispatch(changePrice(currenciesList[0]))
+                })
+    }
 }
 
 export default CurrencyReducer;

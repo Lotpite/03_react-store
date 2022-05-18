@@ -5,26 +5,19 @@ import { withRouter } from 'react-router-dom';
 
 import Navigation from "./Navigation";
 
-import ProductService from '../../../services/ProductService';
 import { Spinner } from "../../styles/Spinner.styled";
-import { setCategories, changeActiveCategory, isFetching } from '../../../redux/categories-reducer';
+import { setCategories, changeActiveCategory, isFetching, getCategories } from '../../../redux/categories-reducer';
 import { setProducts } from '../../../redux/products-reducer';
 
 
 class NavigationContainer extends Component {
 
-    ProductSerivce = new ProductService();
-
     componentDidMount() {
-        this.ProductSerivce
-        .getCategoriesList()
-            .then(res => {
-                this.props.setCategories(res)
-            })  
+        this.props.getCategories()
     }
           
     onCategoryChange = (categoryId) => {
-                    this.props.changeActiveCategory(categoryId)
+        this.props.changeActiveCategory(categoryId)
     }
 
     render() { 
@@ -55,5 +48,6 @@ export default connect(mapStateToProps, {
     setCategories,
     changeActiveCategory,
     isFetching,
-    setProducts
+    setProducts,
+    getCategories
 })(withRouterNavigationContainer);

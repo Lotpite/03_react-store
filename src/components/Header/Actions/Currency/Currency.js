@@ -1,6 +1,6 @@
 import { Component } from "react";
 
-import { CurrencyMenu, CurrencyWrapper, DropdownMenu, DropdownItem, DropdownMenuContainer } from "../../../styles/Currency.styled";
+import { CurrencyMenu, CurrencyWrapper, DropdownMenu, DropdownItem } from "../../../styles/Currency.styled";
 import arrowUp from '../../../../assets/images/arrowUp.svg';
 import arrowDown from '../../../../assets/images/arrowDown.svg';
 
