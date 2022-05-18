@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import { ItemContent, ItemWrapper, ProductImgsBlock, ProductDescriptionBlock, Counter, Change, ImgWrapper, PrevSlide, NextSlide, Quantity, CartImg} from '../styles/Cart.styled';
 import { AttributeItem, AttributesBlock, AttributesWrapper, AttributeTitle, DescriptionSubtitle, DescriptionTitle, PriceAmount } from '../styles/ProductPage.styled';
 import { Spinner } from '../styles/Spinner.styled';

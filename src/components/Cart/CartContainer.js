@@ -1,6 +1,7 @@
 import Cart from "./Cart";
 import React, { Component } from 'react';
 import { connect } from "react-redux";
+
 import { StyledCategory } from "../styles/Category.styled";
 import { changeItemsQty, changeMainImg, changeAttributeItemCart } from '../../redux/cart-reducer'
 import { CartName } from "../styles/Cart.styled";
