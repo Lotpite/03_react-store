@@ -4,9 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import ProductDescriptionPage from './ProductDescriptionPage';
 
-import ProductService from '../../services/ProductService';
-
-import { setProduct, setCurrency, setMainImg, changeAttributeItem } from '../../redux/product-reducer';
+import { setProduct, setCurrency, setMainImg, changeAttributeItem, getProduct } from '../../redux/product-reducer';
 import { addProductToCart } from '../../redux/cart-reducer';
 
 import { Spinner } from '../styles/Spinner.styled';
@@ -14,20 +12,9 @@ import { Spinner } from '../styles/Spinner.styled';
 
 class ProductDescriptionPageContainer extends Component {
 
-    NewProduct = new ProductService();
-
     componentDidMount() {
-        this.getProduct(this.props.match.params.productId)
+       this.props.getProduct(this.props.match.params.productId)
     }
-    
-    getProduct = (productId) => {
-           this.NewProduct
-            .getProductById(productId)
-            .then(res => {
-               this.props.setProduct(res)
-               this.changeImg(res.gallery[0])
-            })
-        }
 
         changeImg = (img) => {
             this.props.setMainImg(img)
@@ -73,6 +60,7 @@ export default connect(mapStateToProps, {
     setCurrency,
     setMainImg,
     changeAttributeItem,
-    addProductToCart
+    addProductToCart,
+    getProduct
 })
 (WithRouterProductDescriptionPageContainer);

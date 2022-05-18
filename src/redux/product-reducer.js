@@ -1,8 +1,12 @@
+import ProductService from "../services/ProductService";
+
 const SET_PRODUCT = 'SET_PRODUCT',
     SET_PRODUCT_ID = 'SET_PRODUCT_ID',
      SET_CURRENCY = 'SET_CURRENCY',
      SET_MAIN_IMG = 'SET_MAIN_IMG',
      CHANGE_ATTRIBUTE_ITEM = 'CHANGE_ATTRIBUTE_ITEM';
+
+const NewProduct = new ProductService();
 
 let initialState = {
     productId: null,
@@ -128,6 +132,16 @@ export const changeAttributeItem = (attributeId, itemId) => {
         type: CHANGE_ATTRIBUTE_ITEM,
         attributeId,
         itemId
+    }
+}
+
+export const getProduct = (productId) => {
+    return (dispatch) => {
+        NewProduct.getProductById(productId)
+            .then(res => {
+               dispatch(setProduct(res))
+               dispatch(setMainImg(res.gallery[0]))
+            })
     }
 }
 
