@@ -5,6 +5,8 @@ export const CardContainer = styled.div `
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
+    // justify-content: space-between;
+    width: 1400px;
 `
 
 export const CartSpan = styled.span`
@@ -28,12 +30,12 @@ export const OutStockLabel = styled.span`
 
 export const CardItem = styled.div `
     position: relative;
-    flex: 0 33%
+    // flex: 0 33%;
     width: 300px;
     height: 444px;
     margin-top: 100px;
-    margin-right: 120px;
-    padding: 16px;
+    margin-left: 100px;
+    padding: 10px;
     text-align: left;
     opacity: ${props => props.inStock ? 1 : 0.5};
     h3 {

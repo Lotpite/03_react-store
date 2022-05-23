@@ -41,14 +41,14 @@ class ProductsListPageContainer extends Component {
 
 
         return (
-            <StyledCategory>  
-                <H2>{this.props.categories.activeCategory}</H2>
+            <>  
+                {/* <H2>{this.props.categories.activeCategory}</H2> */}
                 {this.props.products.isFetching ? <Spinner/>: <ProductListPage
                 products={this.props.products} 
                 setProductId={this.setProductId}
                 currentCurrency={this.props.currentCurrency}
                 addToCart={this.addToCart}/>}  
-            </StyledCategory>
+            </>
             
         );
     }

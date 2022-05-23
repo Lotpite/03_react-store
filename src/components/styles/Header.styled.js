@@ -5,5 +5,5 @@ export const StyledHeader = styled.header `
     flex-direction: row;
     justify-content: space-between;
     width: 1440px;
-    height: 80px;
+    // height: 80px;
 `

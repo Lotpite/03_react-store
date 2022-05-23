@@ -6,6 +6,7 @@ import Header from './components/Header/Header';
 import ProductsListPageContainer from './components/ProductCard/ProductsListPageContainer';
 import ProductDescriptionPageContainer from './components/ProductPage/ProductDescriptionPageContainer';
 import { AppContainer } from './components/styles/App.styled';
+import { StyledCategory } from './components/styles/Category.styled';
 
 class App extends Component {
 
@@ -21,7 +22,10 @@ class App extends Component {
       <AppContainer>
         <GlobalStyle/>
         <Header />
-          <Route path="/categories/:categoryId" render={() => <ProductsListPageContainer/> }/>
+        <StyledCategory>
+        <Route path="/categories/:categoryId" render={() => <ProductsListPageContainer/> }/>
+
+        </StyledCategory>
           <Route path="/products/:productId" render={() => <ProductDescriptionPageContainer /> } />
           <Route path="/cart" render={() => <CartContainer />} />
       </AppContainer>

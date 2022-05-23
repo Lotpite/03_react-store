@@ -31,7 +31,7 @@ class CartOverlayContainer extends Component {
         }
 
         let arr = this.props.productList.map(product => {
-            return product.prices.find(price => price.currency.label === this.props.currentCurrency.label).amount
+            return product.prices.find(price => price.currency.label === this.props.currentCurrency.label).amount * product.quantity
          })
         let totalCosts = arr.reduce((previosAmount, nextAmount) => previosAmount + nextAmount, 0).toFixed(2)
 
