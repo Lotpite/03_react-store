@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -53,14 +54,14 @@ const mapStateToProps = (state) => {
     }
 }
 
-let WithRouterProductDescriptionPageContainer = withRouter(ProductDescriptionPageContainer)
-
-export default connect(mapStateToProps, {
-    setProduct,
-    setCurrency,
-    setMainImg,
-    changeAttributeItem,
-    addProductToCart,
-    getProduct
-})
-(WithRouterProductDescriptionPageContainer);
+export default compose(
+    connect(mapStateToProps, {
+        setProduct,
+        setCurrency,
+        setMainImg,
+        changeAttributeItem,
+        addProductToCart,
+        getProduct
+    }),
+    withRouter
+)(ProductDescriptionPageContainer)

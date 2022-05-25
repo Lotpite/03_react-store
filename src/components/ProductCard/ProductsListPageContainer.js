@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
+import { compose } from 'redux';
 import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 
-import { StyledCategory, H2 } from '../styles/Category.styled'
 import { Spinner } from "../styles/Spinner.styled";
 
 import { isFetching, setProducts, getProducts} from "../../redux/products-reducer";
@@ -62,11 +62,13 @@ const mapStateToProps = (state) => {
     }
 }
 
-let WithRouterProductsListPageContainer = withRouter(ProductsListPageContainer)
-export default connect(mapStateToProps, {
-    isFetching,
-    setProductId,
-    setProducts,
-    addProductToCart,
-    getProducts
-})(WithRouterProductsListPageContainer);
+export default compose(
+    connect(mapStateToProps, {
+        isFetching,
+        setProductId,
+        setProducts,
+        addProductToCart,
+        getProducts
+    }),
+    withRouter
+)(ProductsListPageContainer)

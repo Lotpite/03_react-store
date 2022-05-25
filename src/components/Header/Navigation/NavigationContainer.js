@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import {compose} from 'redux'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -35,19 +36,19 @@ class NavigationContainer extends Component {
     }
 }
 
-
 const mapStateToProps = (state) => {
     return {
         categories: state.categories
     }
 }
 
-let withRouterNavigationContainer = withRouter(NavigationContainer)
-
-export default connect(mapStateToProps, {
-    setCategories,
-    changeActiveCategory,
-    isFetching,
-    setProducts,
-    getCategories
-})(withRouterNavigationContainer);
+export default compose(
+    connect(mapStateToProps, {
+        setCategories,
+        changeActiveCategory,
+        isFetching,
+        setProducts,
+        getCategories
+    }),
+    withRouter
+)(NavigationContainer)
